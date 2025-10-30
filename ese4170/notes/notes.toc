@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Syllabus / Overview}{2}{section.1}%
+\contentsline {section}{\numberline {2}Review}{2}{section.2}%
+\contentsline {section}{\numberline {3}Regression}{4}{section.3}%
+\contentsline {section}{\numberline {4}Model Performance and Selection}{8}{section.4}%
+\contentsline {section}{\numberline {5}Classification}{9}{section.5}%

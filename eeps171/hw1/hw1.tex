@@ -1,0 +1,221 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[colorlinks=true, urlcolor=blue, linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage{ulem} % for underlining (optional)
+
+% Page setup
+\geometry{top=1in, bottom=0.5in, left=0.5in, right=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+
+% Header setup
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyhead[L]{Michael Lee}                 % Left
+\fancyhead[C]{Student ID: 510615}          % Center
+\fancyhead[R]{EEPS 1710 Exercise 1}        % Right
+\fancyfoot[C]{\thepage}                    % page number at bottom center
+\setlength{\headheight}{14pt}              % avoid fancyhdr warning
+
+\graphicspath{{images/}}
+
+% Title info
+\title{EEPS 1710 Exercise 1}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\newpage
+
+\section*{Problem 1}
+\textit{Visit the Astronomy Picture of the Day (APOD) site (https://apod.nasa.gov) and explore it a bit. Most of the daily blurbs on this site are about astronomy, but quite a few are about planetary science. It's a great source of really nice imagery (a lot of the illustrations in this course are downloaded from this site), and the captions are very useful, not only in their own right but also in providing some useful links that you can use to pursue topics in greater depth. To exercise your navigation of this site, download and show/label in your report}
+
+\begin{enumerate}[label=\roman*.]
+
+    \item \textbf{Three solid planetary surfaces (other than Earth and Moon) that are very young}
+
+    \begin{figure}[H]
+        \centering
+        % --- Image 1 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{phobos_over_mars.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap150716.html}{Phobos over Mars}}
+        \end{minipage}
+        \hfill
+        % --- Image 2 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Callisto_Voyager2Gill_960.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap250901.html}{Callisto}}
+        \end{minipage}
+        \hfill
+        % --- Image 3 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{IoFlyby_Juno_2047.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap231023.html}{Io}}
+        \end{minipage}
+    \end{figure}
+
+    \item \textbf{Three that are very old}
+    
+    \begin{figure}[H]
+        \centering
+        % --- Image 1 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{MarsPan_ExpressLuck_1080_annotated.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap240909.html}{Mars}}
+        \end{minipage}
+        \hfill
+        % --- Image 2 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{MercuryCaloris_BepiColombo_960.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap240916.html}{Mercury}}
+        \end{minipage}
+        \hfill
+        % --- Image 3 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{Venus_Venera14_960.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap250511.html}{Venus}}
+        \end{minipage}
+    \end{figure}
+
+    \item \textbf{Two meteors}
+    \begin{figure}[H]
+        \centering
+        % --- Image 1 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{MeteorPleiades_Alqasimi_960.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap250825.html}{Pleidas}}
+        \end{minipage}
+        \hfill
+        % --- Image 2 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{DeltaAqrFireflies1024.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap250802.html}{Perseid}}
+        \end{minipage}
+        \hfill
+    \end{figure}
+
+    \item \textbf{A meteorite}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{ACD12-0067-001jenniskens900.jpg}
+        \caption{\href{https://apod.nasa.gov/apod/ap120428.html}{Sutter's Mill Meteorite}}
+    \end{figure}
+    
+    \item \textbf{A comet with a tail}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{C2024G3_ATLAS_ESO_Beletsky.jpg}
+        \caption{\href{https://apod.nasa.gov/apod/ap250124.html}{Comet G3 Atlas}}
+    \end{figure}
+
+    \item \textbf{A lunar eclipse}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.28\textwidth]{LunarEclipseColors_Jin_960.jpg}
+        \caption{\href{https://apod.nasa.gov/apod/ap250325.html}{Lunar Eclipse}}
+    \end{figure}
+
+    \item \textbf{A solar eclipse}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{TSE2023-Comp48-2a1024.jpg}
+        \caption{\href{https://apod.nasa.gov/apod/ap250612.html}{Solar Eclipse}}
+    \end{figure}
+
+    \item \textbf{Two asteroids}
+    
+    \begin{figure}[H]
+        \centering
+        % --- Image 1 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{dinkinesh-firstlook-llorri.png}
+            \caption{\href{https://apod.nasa.gov/apod/ap231104.html}{Dinkinesh}}
+        \end{minipage}
+        \hfill
+        % --- Image 2 ---
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{d_tag-2-frames.jpg}
+            \caption{\href{https://apod.nasa.gov/apod/ap230921.html}{Dennu}}
+        \end{minipage}
+        \hfill
+    \end{figure}
+
+    \item \textbf{A trans-Neptunian (or Kuiper belt) object}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5 \textwidth]{PIA20727PlutoNight1024c.jpg}
+        \caption{\href{https://apod.nasa.gov/apod/ap241116.html}{Pluto}}
+    \end{figure}
+\end{enumerate}
+
+\section*{Problem 2}
+\textit{A staple of Moon lore since the Apollo era is that there is no water on the Moon. But there is! This was demonstrated by many NASA lunar missions in the past decade. Where was the water detected, how was it detected, how did it get there? Please provide images and references (e.g., webpage links).} \\
+
+For a long time, people thought the Moon was dry, but NASA missions have proved this is not true. In some places, like craters near the poles that never see sunlight, scientists have found water ice locked away in the cold. In other spots, like the sunlit Clavius Crater, NASA's SOFIA telescope detected actual water molecules using infrared light, which was the first clear proof of water outside the dark craters. Later, a wide map made in 2023 showed water spread across much of the southern half of the Moon, even reaching the south pole, so it is more common than once thought. As for how it got there, some water was likely brought by comets and asteroids, some by tiny micrometeorites, some formed from the solar wind reacting with lunar dust, and some is saved in “cold traps” where it cannot escape. Altogether, this shows the Moon is not bone-dry but instead holds water in different places, from ice in dark craters to molecules in sunny soil. \\
+
+Source: \href{https://science.nasa.gov/moon/moon-water-and-ices/}{https://science.nasa.gov/moon/moon-water-and-ices/}
+
+\section*{Problem 3}
+
+\textit{Water on Mars is another hot topic in planetary science. We have known for a long time that there WAS water on Mars (dried river valleys, lake deposits, aqueous minerals, etc.) We have also known there are water ice stored as the ice caps in Mars' polar regions. However, there is no convincing evidence about liquid water present on Mars. A few years ago, liquid water was discovered on Mars. What is the evidence? How could it show that there is currently liquid water on Mars? Which mission made this discovery? Please provide images and references (e.g., webpage links). Is there current debate on this discovery? What could be other explanations?} \\
+
+By recording recording Mars's seismic activity using the NASA's Mars Insight Lander, scientists have found that Mars contains liquid water reservoirs 6-12 miles beneath the planet's surface (\href{https://www.bbc.com/news/articles/czxl849j77ko}{Gill 2024}). Like Earth, scientists suspect water arrived on Mars like Earth---via asteroids and comets crashing into it's surface (\href{https://www.planetary.org/articles/your-guide-to-water-on-mars#:~:text=Water%20locked%20in%20minerals&text=These%20aptly%20named%20hydrated%20minerals,for%20future%20return%20to%20Earth.}{Davis 2022}). The water then seeped through porous rock into underground aquifiers, just like on Earth (\href{https://www.livescience.com/space/mars/scientists-find-hint-of-hidden-liquid-water-ocean-deep-below-mars-surface}{Thomson 2025}). This prevented the water from evaporating or freezing as Mars's atomsphere disappeared.
+
+\section*{Problem 4}
+\textit{In the past ten years, NASA has funded three New Frontiers missions to explore solar system bodies (Pluto, Jupiter and one asteroid). What is a New Frontiers mission? What are these three missions? (Write a sentence or two about each mission, with one or two appropriate illustrations.) NASA has announced the next (fourth) New Frontiers mission. What is the name of this future mission and what is the destination of this mission? What is the main goal/highlight of this mission? Please provide images and references (e.g., webpage links).} \\[4pt]
+The New Frontiers Program is a NASA initiative designed to carry out focused planetary science investigations using innovative and efficient management approaches. Its central goal is to answer unique science questions about our Solar System. Each mission is led by a Principal Investigator (PI), who brings together teams from universities, government labs, and industry (\href{https://science.nasa.gov/planetary-science/programs/new-frontiers/}{NASA}). So far there have been three missions:
+\begin{enumerate}
+  \item \textbf{New Horizons (2006--Present)}
+  
+  The first mission to Pluto; it also studied Jupiter and later the Kuiper Belt object Arrokoth. In 2015 it returned the first close-up images of Pluto and continues extended science (\href{https://science.nasa.gov/planetary-science/programs/new-frontiers/}{NASA}).
+  \begin{figure}[H]\centering
+    \includegraphics[width=0.5\textwidth]{new_horizons.png}
+  \end{figure}
+
+  \item \textbf{Juno (2011--Present)}
+  
+  Juno studies Jupiter's interior, atmosphere, and magnetosphere. It has returned over 3 terabits of data since 2016 and is extended through 2025 (or end of life), including flybys of Ganymede, Europa, and Io (\href{https://science.nasa.gov/planetary-science/programs/new-frontiers/}{NASA}).
+  \begin{figure}[H]\centering
+    \includegraphics[width=0.4\textwidth]{juno_arrives.jpeg}
+  \end{figure}
+
+  \item \textbf{OSIRIS-REx / OSIRIS-APEX (2016--Present)}
+  
+  In 2023, OSIRIS-REx delivered samples from asteroid Bennu to Earth. The spacecraft is now en route as OSIRIS-APEX to study asteroid Apophis shortly after its 2029 Earth flyby (\href{https://science.nasa.gov/planetary-science/programs/new-frontiers/}{NASA}).
+  \begin{figure}[H]\centering
+    \includegraphics[width=0.5\textwidth]{orex-new2.png}
+  \end{figure}
+\end{enumerate}
+
+The next New Frontiers mission is \textbf{Dragonfly} (launch no earlier than 2028). This first-of-its-kind quadcopter will fly on Saturn's moon Titan to study surface composition and organic chemistry, searching for the building blocks of life in areas where liquid water and organics may have co-existed (\href{https://science.nasa.gov/planetary-science/programs/new-frontiers/}{NASA}).
+\begin{figure}[H]\centering
+  \includegraphics[width=0.4\textwidth]{dragonfly-landing-640x480-1.jpg}
+\end{figure}
+
+\end{document}

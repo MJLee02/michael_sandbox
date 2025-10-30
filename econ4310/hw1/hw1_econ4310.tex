@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}   % advanced math environments
+\usepackage{amssymb}   % math symbols
+\usepackage{amsthm}    % theorem/proof environments (optional, kept for later)
+\usepackage{geometry}  % page margins
+\usepackage{enumitem}  % better lists
+\usepackage{graphicx}  % include images
+\usepackage{titlesec}
+
+\usepackage{hyperref}  % hyperlinks (keep this LAST)
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+
+% Title info
+\title{ECON 4310 HW1}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+
+% -------- Problem 1 --------
+\item 
+\textit{Consider the set of alternatives \(X = \{x, y, z\}\). A binary relation \(R\) on \(X\) is a set of ordered
+pairs from \(X\). If \((a, b) \in R\), we write \(aRb\) and read ``\(a\) is related to \(b\)''. In the case of
+preferences, this means ``\(a\) is at least as good as \(b\)''.
+}
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+\item \textit{Provide an example of a binary relation on \(X\) that is complete and reflexive,
+but not transitive.} \\
+
+Take \(R_1 = \{(x,x), (y,y), (z,z), (x,y), (y,z), (z,x)\}\). \\
+
+\(R_1\) is reflexive: \((x,x), (y,y), (z,z) \in R_1\) \\
+\(R_1\) is complete: \((x,y), (y,z), (z,x) \in R_1\) \\
+\(R_1\) is not transitive:  \((x,y), (y,z) \in R_1\) but \((x,z) \notin R_1\)
+
+\item \textit{Provide an example of a binary relation on \(X\) that is reflexive and transitive,
+but not complete.} \\
+
+Take \(R_2 = \{(x,x), (y,y), (z,z), (x,y)\}\). \\
+
+\(R_2\) is reflexive: \((x,x), (y,y), (z,z) \in R_2\) \\
+\(R_2\) is not complete: \((z,y), (y,z) \notin R_2\) \\
+\(R_2\) is transitive: the only nontrivial link is \(xRy\), and there’s no \(yR\cdot\) to trigger a violation.
+\end{enumerate}
+
+% -------- Problem 2 --------
+\item 
+\textit{Provide an example from your life or experience where either the axiom of transitivity or completeness has been violated with respect to your preferences.} \\
+
+Last weekend when I went to Katie's for dinner with some friends, my choices violated the axiom of transitivity. I had three options worth considering: pizza, salad, and ice cream. I preferred pizza over salad (because it's more filling), salad over ice cream (because it's healthier), and ice cream over pizza (because I love ice cream). \\
+
+This violated the axiom of transitivity because:
+\[
+    \text{pizza} > \text{salad} > \text{ice cream} > \text{pizza}
+\]
+
+% -------- Problem 3 --------
+\item 
+\textit{Suppose a decision maker chooses} \(\{ \text{cherries} \}\) \textit{from the set} \(\{ \text{apples}, \text{bananas}, \text{cherries} \}\).
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+\item \textit{The next day they choose from} \(\{\text{bananas, cherries}\}\)\textit{. What, precisely, is required of their choice in order for the choice data to satisfy Property A (IIA)?} \\
+
+They must choose \(\{\text{cherries}\}\) as \(\{\text{bananas, cherries}\} \subset \{ \text{apples}, \text{bananas}, \text{cherries} \}\). \\
+
+\item \textit{On the third day they choose from} \(\{\text{apples, bananas}\}\)\textit{. What, precisely, is required of this choice in order for the choice data to satisfy Property A (IIA)?} \\
+
+They may choose either \{\text{apples}\} or \{\text{bananas}\}. For IIA to hold, for any \(X \subset \{ \text{apples}, \text{bananas}, \text{cherries} \}\) s.t. \(\{\text{cherries}\} \in X\), the decision maker will choose \(\{\text{cherries}\}\). However, \(\{\text{cherries}\} \notin \{\text{apples, bananas}\}\).
+\end{enumerate}
+
+% -------- Problem 4 --------
+\item 
+\textit{Suppose a decision maker chooses} \(\{\text{bananas, cherries}\}\) \textit{from the set} \(\{\text{bananas, cherries}\}\) \textit{and chooses} \(\{\text{cherries}\}\) \textit{from the set} \(\{\text{apples, bananas, cherries}\}\).
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+\item \textit{Does this data satisfy Property B? Why or why not?} \\
+
+No. If Property B were to be satisfied, the decision maker would choose \(\{\text{bananas, cherries}\}\). \\
+
+\item \textit{Does this data satisfy Property A (IIA)? Why or why not?} \\
+
+Yes, because \(\{\text{cherries}\}\) is still being chosen.
+\end{enumerate}
+
+% -------- Problem 5 --------
+\item 
+\textit{Suppose a decision maker produces choice data in which a single alternative is chosen from every menu.} \\
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+\item
+\textit{Does this data necessarily satisfy Property A (IIA)? Why or why not?} \\
+
+No. Choosing one alternative per menu does not guarantee IIA because it does not require that for any menu, \(M\), containing an item, \(x\), \(x \in c(M)\).
+
+\item
+\textit{Does this data necessarily satisfy Property B? Why or why not?} \\
+
+Yes, but vacuously. If a \textit{single} alternative is chosen from every menu, then it is impossible for \(x,y \in c(M_i)\). Thus, the premise of Property B never holds, and the implication 
+\[
+(x,y \in c(M_i) \ \wedge \ y \in c(M_j)) \;\Rightarrow\; x \in c(M_j) \quad \text{where} \quad M_i \subset M_j
+\]
+is satisfied vacuously.
+
+\end{enumerate}
+
+\item \textit{Provide give an example from your life or experience where Property A (IIA) or Property B has been violated with respect to your choices.}
+
+One time at a team dinner, I was going to order a steak with a glass of red wine. Normally, I would not have chosen the wine since I don’t like alcohol, but I was told it paired well with the steak and, since I wasn’t paying, I considered it. However, they were sold out of the steak, so I dropped the wine as well and ordered the cacio e pepe instead. \\
+
+This choice violates IIA. In the initial menu, \(M_1\), my choice was \(\{\text{steak, red wine}\}\). But under the reduced menu \(M_2 = M_1 \setminus \{\text{steak}\}\), my choice became \(\{\text{cacio e pepe}\}\). Thus, the red wine—originally part of the chosen bundle—was not selected once steak was removed, contradicting the independence of irrelevant alternatives. \\
+
+\item \textit{Now that we have formally defined what it means to be a rational decision maker, do you think your choice on whether to sit in the computer section or not was rational?}
+
+No, my choice to sit in the computer section was not rational because new information---the computer section being in the back---arose after I made my choice. Because my vision is bad, I can't read the lecture slides in the back, so I moved to the front and switched to paper notes.
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,684 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}   % advanced math environments
+\usepackage{amssymb}   % math symbols
+\usepackage{amsthm}    % theorem/proof environments (optional, kept for later)
+\usepackage{geometry}  % page margins
+\usepackage{enumitem}  % better lists
+\usepackage{graphicx}  % include images
+\usepackage{titlesec}
+
+\usepackage{hyperref}  % hyperlinks (keep this LAST)
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+
+
+% Title info
+\title{ESE 4170 Notes}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Syllabus / Overview}
+\begin{itemize}
+    \item Submit work as a pdf with Python code
+    \item 20 min quiz after each module (in-class, open book, open note)
+\end{itemize}
+
+\section{Review}
+\subsection*{What is AI?}
+\begin{itemize}
+    \item \defn Artificial Intelligence (AI) - A computer system that can perform complex tasks normally done by human, reasoning, decision making, creating, etc.
+    \item \defn General AI or Artificial General Intelligence (AGI) - AI that can learn and perform tasks anywhere
+    \item \defn Narow AI - AI that can perform specific tasks (playing chess, auto driving, reading text, etc.)
+    \item Latest AI wave has been focused on AGI (ChatGPT, Claude, etc.)
+    \item \defn Turing Test
+    \begin{enumerate}
+        \item A computer and a human both output text
+        \item A human judge tries to figure out which text output is human and which is a computer
+        \item If the judge cannot figure out who is who, the computer passes the Turing Test
+    \end{enumerate}
+    \item How do LLMs work - They predict the most probable next word given the previous words
+    \item \defn Generative Pre-trained Transformer (GPT) - Generative (can produce novel content) Pre-trained (trained on a pre-existing dataset), Transformer (the kind of neural network it uses)
+\end{itemize}
+
+\subsection*{How does AI work (high-level)}
+\begin{itemize}
+    \item In TRADITIONAL PROGRAMMING, we use an input (data) and rules to get an output
+\end{itemize}
+\[
+\begin{pmatrix}
+    \text{Input} \\
+    \text{Rules}
+\end{pmatrix}
+\quad
+\rightarrow
+\quad
+\text{Output}
+\]
+
+\begin{itemize}
+    \item In MACHINE LEARNING, we use an input (data) and the output to obtain the rules
+\end{itemize}
+\[
+\begin{pmatrix}
+    \text{Input} \\
+    \text{Output}
+\end{pmatrix}
+\quad
+\rightarrow
+\quad
+\text{Rules}
+\]
+
+\subsection*{Rectangle Game}
+\begin{itemize}
+    \item Define a game where \(R = (a,b) \times (c,d) \subseteq \mathbb{R}^2\).
+    \item We want to figure out what defines \(R\).
+    \item We will accomplish this by plotting \(N\) points, \(p_1, \dots, p_N \in \mathcal{D} = \{(x_i, y_i)\}^N_{i=1}\).
+    \item For each \(p_i\) with \(i \in [N]\), we know \(p_i \in R\) or \(p_i \notin R\) with some fixed probability distribution \(\mathbb{D}\).
+    \item Based on this information, we will create a space \(R'\) s.t. \(p_i \in R' \iff p_i \in R\).
+\end{itemize}
+
+\subsection*{How does machine learning work, generally?}
+\begin{itemize}
+    \item Let \(S\) be the input vector
+    \[
+        S = \left( x_1, x_2, \dots, x_n \right) \subseteq \mathcal{X}^n
+    \]
+    \item Let \(\mathcal{R}\) be the target value
+    \item The goal of ML is to find a map \(f: S \rightarrow \mathcal{R}\)
+    \item \defn Hypothesis model set - The set of functions we will use to map \(S \rightarrow \mathcal{R}\). Specifically, we typically employ a parametric model:
+    \[
+        h_w(x) = h(x, w)
+    \]
+    \item Where \(w = [w_1, \dots w_d]^T \in \mathcal{R}^d\)
+    \item \defn Hypothesis class - Set of all functions induced by the possible choice of the parameter, \(w\)
+    \[
+        H = \{h_w | w \in \mathcal{R}^d\}
+    \]
+    \item \defn Loss (cost) function (\(L\)) - The function we use ot measure how different our model's predicitions, \(\hat{y}\), are from the true outputs, \(y\).
+    \item We will attempt to minimize \(L\) using \(w\)
+    \[
+        w^* = \arg\min_{w} \, L(w)
+    \]
+\end{itemize}
+
+\subsection*{Math Review}
+\[
+    \mathbb{R} = \mathcal{R}, \quad \mathbb{R}^n = \mathcal{R}^n
+\]
+Let the following be true:
+\[
+    \textbf{x, y} \in \mathcal{R}^n,
+    \quad \textbf{A} \in \mathcal R^{m \times n},
+    \quad a \in \mathcal{R}
+\]
+Recall the \textbf{Inner Product}
+\[
+    \langle \textbf{x}, \textbf{y} \rangle = \textbf{x}^T \textbf{y}
+\]
+The see the slides lol
+
+\begin{itemize}
+    \item Quiz will be on \textbf{Gradient Descent Search Method}
+\end{itemize}
+
+Given an objective function, \(g(w)\), we want to find \(w \in \mathcal{R}^d\) that minimizes \(g(w)\).
+\[
+    \argmin_{w} \, g(w)
+\]
+\textbf{Steps (conceptually):}
+\begin{enumerate}
+    \item Choose a point \(w^0 \in \mathcal{R}^d\) and find \(g(w^0)\)
+    \item Gradually move towards the minimum by moving in the direction of the negative gradient using \(w^1, w^2, \dots w^k\)
+    \item Hence after \(k+1\) steps, we will find \(w\) that minimizes \(g(w)\)
+\end{enumerate}
+
+\noindent \textbf{Looking into the maths for 1-dimensional functions,}
+\[
+    g(w + \Delta w)
+    = \sum_{i=0}^n \frac{g^i(w)\Delta w^i}{i!} 
+    \approx g(w) + g'(w)\Delta w
+\]
+Let \(\Delta w = -\eta g'(w)\) where \(\eta > 0\) is the learning rate. Hence,
+\[
+    g(w -\eta g'(w)) 
+    \approx g(w) + g'(w)(-\eta g'(w)) = g(w) - \eta \left( g'(w) \right)^2
+\]
+\[
+    \forall g'(w) \neq 0, \quad g(w - \eta g'(w)) < g(w)
+\]
+Thus, we can find
+\[
+    w^{i+1} = w^i - \eta g'(w^{i}) \quad (i \in [k])
+\]
+
+\noindent \textbf{Looking into the maths for \(n\)-dimensional functions,}
+\[
+    g(w + \Delta w)
+    \approx g(w) + \nabla g(w) \Delta w
+    \quad
+    \text{where}
+    \quad
+    \nabla g(w)
+    =
+    \begin{bmatrix}
+        \frac{\partial g}{\partial w_1} \\
+        \frac{\partial g}{\partial w_2} \\
+        \vdots \\
+        \frac{\partial g}{\partial w_n}
+    \end{bmatrix}
+\]
+
+\noindent \textbf{\(\eta\) Step Size Tradeoff:}
+\begin{itemize}
+    \item The larger \(\eta\) is, the more likely we are to skip the minimum
+    \item The smaller \(\eta\) is, the more likely we are to take a long time to find the minimum
+    \item Not that \(\eta\) does not need to be fixed \\
+\end{itemize} 
+
+\noindent \textbf{Practice Problems (Find \(w\) that minimizes \(g\) for all functions. Answers are in the slides):}
+\begin{enumerate}
+    \item \(g(w) = w^2 + 2w + 2\)
+    \item \(g(w) = 0.5w_1^2 + w_2^2, \quad w = [w_1, w_2]^T\)
+\end{enumerate}
+
+\section{Regression}
+\begin{itemize}
+    \item Our goal is to create,
+    \[
+       f: \mathcal{R}^d \rightarrow \mathcal{R}, \quad \hat{y} = w_0 + \sum_{i=1}^d w_i x_i
+    \]
+    \item To rewrite this more simply, let
+    \[
+        \vec{x} =
+        \begin{bmatrix}
+            1 \\
+            x_1 \\
+            \vdots \\
+            x_d
+        \end{bmatrix}
+        \quad \text{and} \quad
+        \vec{w} =
+        \begin{bmatrix}
+            w_0 \\
+            w_1 \\
+            \vdots \\
+            w_d
+        \end{bmatrix}
+    \]
+    \item We will create an approximation of \(f\), \(h_w\)
+    \[
+        h_w (\vec{x}) = \vec{x}^T \vec{w} = \langle \vec{x}, \vec{w} \rangle
+    \]
+    \item We want to find \(h_w\) that best fits our data, \(h_{w^*}\), and thus best approximates \(y = f(x)\)
+    \item We can find \(h_{w^*}\) using \textbf{Ordinary Least Squares (OLS)}, which minimizes the sum of the squared errors (SSE)
+    \item Let our \textbf{Loss Weight Function}, \(L(w)\), be:
+    \[
+        L(w)
+        = \sum_{i=1}^{N} \left( \hat{y_i} - y_i \right)^2
+        = \sum_{i=1}^{N} \left( h_w(\vec{x}) - y_i \right)^2
+        = \sum_{i=1}^{N} \left( \vec{x}^T \vec{w} - y_i \right)^2
+    \]
+    \item Let our dataset be \(X\)
+    \[
+        \begin{bmatrix}
+            \hat{y_1} \\
+            \hat{y_2} \\
+            \vdots \\
+            \hat{y_N}
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            1 & x_{11} & \dots & x_{1d} \\
+            1 & x_{21} & \dots & x_{2d} \\
+            \vdots & \vdots & \dots & \vdots \\
+            1 & x_{N1} & \dots & x_{Nd}
+        \end{bmatrix}
+        \begin{bmatrix}
+            \hat{w_1} \\
+            \hat{w_2} \\
+            \vdots \\
+            \hat{w_d}
+        \end{bmatrix}
+        = X\vec{w}
+    \]
+    \item Hence,
+    \[
+        L(w)
+        = \sum_{i=1}^{N} \left( \vec{x}^T \vec{w} - y_i \right)^2
+        = ||X\vec{w} - y||_2^2
+    \]
+    \item We want to find ...
+    \[
+        w^* = \arg\min_{w} \{ L(w) = ||X\vec{w} - y||_2^2 \}
+    \]
+\end{itemize}
+\begin{proof}
+    \textbf{Claim:} \(w^* = (X^T X)^{-1}X^T y\) \\
+
+    \noindent Expanding, \(L(w) = ||X\vec{w} - y||_2^2 \)
+    \[
+        L(w)
+        = ||X\vec{w} - y||_2^2 
+        = (X\vec{w} - y)^T(X\vec{w} - y)
+        = (X\vec{w})^TX\vec{w} - 2(X\vec{w})^T y + y^T y
+    \]
+    Thus,
+    \[
+        \nabla_{w} L(w)
+        = 2X^TX\vec{w} - 2X^T y
+        = \vec{0}
+        \quad \Rightarrow \quad
+        2X^TX\vec{w} = 2X^T y
+        \quad \Rightarrow \quad
+        X^TX\vec{w} = X^T y
+    \]
+    If \(X^T X\) is full rank, \(w^* = (X^T X)^{-1}X^T y\). We must now show this is a \textit{global minimum} by showing the Hessian of \(L\) is positive-definite.
+    \[
+        \nabla^2 L(w) = 2X^TX
+    \]
+    \[
+        \forall w, \quad 
+        w^T (2X^T X) w = 2(Xw)^T Wx = 2 ||Xw||_2^2 > 0
+    \]
+
+\end{proof}
+\begin{itemize}
+    \item We can also use non-linear functions (i.e. non-linear feature mapping)
+    \item \defn Feature map: \(\phi: \mathcal{R}^l \rightarrow \mathcal{R}^{d+1}\), \(\vec{x_i} \mapsto \phi(\vec{x_i})\)
+    \[
+        \begin{bmatrix}
+            x_1 \\
+            x_2 \\
+            \vdots \\
+            x_N
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            x_{11} & x_{12} & \dots & x_{1l} \\
+            x_{21} & x_{22} & \dots & x_{2l} \\
+            \vdots & \vdots & \dots & \vdots \\
+            x_{N1} & x_{N2} & \dots & x_{Nl}
+        \end{bmatrix}
+        \quad \Rightarrow \quad
+        \begin{bmatrix}
+            \phi(x_1) \\
+            \phi(x_2) \\
+            \vdots \\
+            \phi(x_N)
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            \phi_0(x_{1}) & \phi_1(x_{1}) & \dots & \phi_d(x_{1}) \\
+            \phi_0(x_{2}) & \phi_1(x_{2}) & \dots & \phi_d(x_{2}) \\
+            \vdots & \vdots & \dots & \vdots \\
+            \phi_0(x_{N}) & \phi_1(x_{N}) & \dots & \phi_d(x_{N}) \\
+        \end{bmatrix}
+        = \Phi
+    \]
+    \item Thus, our hypothesis function is:
+    \[
+        h_w(\vec{x}) = \sum_{j=0}^{d} w_j \phi_j(\vec{x}) = \phi(\vec{x})^Tw
+    \]
+    \item Similarly, to before, we can optimize the weights, \(\vec{w}\), on \(||\Phi\vec{w} - y||^2\), giving us \(w^*\):
+    \[
+        w^* = (\Phi^T \Phi)^{-1}\Phi^T y
+    \]  
+    \item We can use polynomials to match nearly any function, so we can use polynomials for linear regression:
+    \[
+        \phi(x)^T
+        =
+        \begin{bmatrix}
+            1 & x & x^2 \cdots x^m
+        \end{bmatrix}^T
+    \]
+    \item Hence,
+    \[
+        \hat{y}
+        =
+        \begin{bmatrix}
+            \hat{y_1} \\
+            \hat{y_2} \\
+            \vdots \\
+            \hat{y_N}
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            1 & x_1 & (x_1)^2 & \cdots & (x_1)^m \\
+            1 & x_2 & (x_2)^2 & \cdots & (x_2)^m \\
+            \vdots & \vdots & \vdots & \cdots & \vdots \\
+            1 & x_N & (x_N)^2 & \cdots & (x_N)^m
+        \end{bmatrix}
+        \begin{bmatrix}
+            w_0 \\
+            w_1 \\
+            w_2 \\
+            \vdots \\
+            w_N
+        \end{bmatrix}
+        = X \vec{w}
+    \]
+    \item Be wary of overfitting: too many variables causes you to accurately predict data on the training set, but fail massively on test or real datasets
+    \item One way to correct for overfitting is \textbf{Ridge Regularization} or \textbf{L2 Regularization}:
+    \[
+        L(w) = \argmin _{w} \left\{ (||Xw - y||_2)^2 + \lambda (||w||_2)^2 \right\}
+        \quad \text{where } \lambda > 0
+    \]
+\end{itemize}
+
+\begin{proof}
+    \textbf{Claim:} \(w_{ridge} = (X^T X + \lambda I)^{-1}X^T y\)
+    \[
+        L(w)
+        = (||Xw - y||_2)^2 + \lambda (||w||_2)^2 
+        = w^T X^T X w - 2w^T X^T y + y^T y + \lambda w^T w
+    \]
+    Thus,
+    \[
+        \nabla_w L(w)
+        = 0
+        = 2 X^T X w - 2X^T y + 2 \lambda w
+        = X^T X w - X^T y + \lambda w
+        \quad \Rightarrow \quad
+        X^T y = (X^T X + \lambda I)w
+    \]
+    Finally,
+    \[
+        w_{ridge} = (X^T X + \lambda I)^-1 X^T y
+    \]
+    We know this minimum is unique
+    \[
+        \nabla^2 L(w) = 2 X^T x + 2 \lambda I
+    \]
+    Thus,
+    \[
+        \forall w \neq \vec{0},
+        \, w^T(2 X^T X + 2 \lambda I)w
+        = w^T(2 X^T X) w + w^T \lambda I w
+        = ||Xw||^2 + \lambda||w||^2 > 0
+    \]  
+    And so \(\nabla^2 L(w)\) is positive definite.
+\end{proof}
+
+\begin{itemize}
+    \item We can also use \textbf{Lasso Regularization} or \textbf{L1 Regularization}.
+    \[
+        w_{lasso} = \argmin_{w} \left\{ (||Xw-y||_2)^2 + \lambda \sum_{j=0}^d|w_j| \right\}
+    \]
+    \item \textbf{Maximium Likelihood Estimate (MLE)}
+    \begin{itemize}
+        \item Let \(X \sim N(\mu,1)\). To estimate \(\mu\) from a sample size, \(n\):
+    \end{itemize}
+    \[
+        L(\mu)
+        = P\!\left( \bigcap_{i=1}^n x_i \right)
+        = \prod_{i=1}^{n} p(x_i \, | \, \mu)
+        = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}}e^{-\frac{(x_i - \mu)^2}{2}}
+    \]
+    \[
+        l(\mu)
+        = \ln(L(\mu))
+        = \sum_{i=1}^{n} \ln\left(\frac{1}{\sqrt{2\pi}}e^{-\frac{(x_i - \mu)^2}{2}}\right)
+    \]
+    \[
+    \frac{dl}{d \mu} = 0 = \sum_{i=1}^{n} (x_i - \mu)
+    \quad \Rightarrow \quad
+    \hat{\mu} = ???
+    \]
+    \begin{itemize}
+        \item In a ML context, we have \(Y_i = h_w(x_i) + Z_i\) where \(x_i\) is fixed and \(Z_i\) is a random variable.
+        \item In most contexts, we assume \(Z_i \sim N(0, \sigma^2)\) are identically distributed zero-mean Gaussians. Hence,
+        \[
+            Y_i \sim N(h_w(x_i), \sigma^2)
+        \]
+        \item And so,
+    \end{itemize}
+    \[
+        \hat{w_{MLE}} = \argmin_{w} L(w, \mathcal{D}) \quad \text{where:}
+    \]
+    \[
+        L(w, \mathcal{D})
+        = p(Y_1 = y_1, \dots, Y_N = y_n \, | \, x_1, \dots, x_n, w)
+        = \prod_{i=1}^{n} p(y_i \, | \, x_i, w)
+    \]
+    \[
+        l(w; X, y) = \sum_{i=1}^{n} ln\big(p(y_i \, | \, x_i, w)\big)
+    \]
+    \item Recall that:
+    \[
+    p(Y_i = y_i | x_i, w) = \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{\big(y_i - h_w(x_i)\big)^2}{2}}
+    \]
+    \item Hence,
+    \[
+        l(w; X, y) = -\sum_{i=1}^{n} \frac{\big(y_i - h_w(x_i)\big)^2}{2\sigma^2} - N \cdot \ln(\sigma \sqrt{2\pi})
+    \]
+    \item Maximizing for \(w\),
+    \[
+        \hat{w_{MLE}}
+        = \argmin_w \left\{ -\sum_{i=1}^{n} \frac{\big(y_i - h_w(x_i)\big)^2}{2\sigma^2} - N \cdot \ln(\sigma \sqrt{2\pi}) \right\}
+        = \argmin_w \left\{ -\sum_{i=1}^{n} \big(y_i - h_w(x_i)\big)^2 \right\}
+    \]
+    \item Recall \(h_w(x_i) = (x_i)^T w\). Thus,
+    \[
+        \hat{w_{MLE}}
+        = \argmin_w \left\{ -\sum_{i=1}^{n} \big(y_i - (x_i)^T w\big)^2 \right\}
+        = \argmin_w \left\{ (||y_i - (x_i)^T w||_2)^2 \right\}
+    \]
+    \[\qed\]
+    \item Recall Bayes Theorem:
+    \[
+        P(h|E) = \frac{P(E|h) \cdot P(h)}{P(E)}
+    \]
+    \item Let the following be true:
+    \[
+        h_{MAP}
+        = \argmax_{h \in H} \left\{ P(h | \mathcal{D}) \right\}
+        = \argmax_{h \in H} \left\{ \frac{P(\mathcal{D} | h) P(h)}{\mathcal{D}} \right\}
+        = \argmax_{h \in H} \left\{ P(\mathcal{D} | h) P(h) \right\}
+    \]
+    \item In our use case, we parameterized \(h\) by \(w\). Thus,
+    \[
+        \hat{w_{MAP}}
+        = \argmax_{w} \left\{ P(h_w | \mathcal{D}) \right\}
+        = \argmax_{w} \left\{ P(\mathcal{D} | h_w) P(h_w) \right\}
+        = \argmax_{w} \left\{ \ln\left(P(\mathcal{D} | h_w)\right) + \ln \left(P(h_w)\right) \right\}
+    \]
+    \[
+        = \argmin_{w} \left\{ -\ln\left(P(\mathcal{D} | h_w)\right) - \ln \left(P(h_w)\right) \right\}
+    \]
+    \item Assuming every hypothesis in \(H\) is equally likely, \(P(h_w)\) is constant and so:
+    \[
+        h_{MAP} = \argmax_{h \in H} P(\mathcal{D} | h) = h_{ML}
+    \]
+    \item Thus, we can look to minimize \(w\):
+    \[
+        \dots
+    \]
+\end{itemize}
+
+\newpage
+
+\section{Model Performance and Selection}
+
+\begin{itemize}
+    \item Model selection: How do we pick the ``best'' model?
+    \item Performance evalution: Can we use training error (SSE) to measure the performance of fitted curves
+    \item \defn True Error: expected loss over the entire dataset. However, this is impossible to observe
+    \[
+        R(w) = E_{x,y} [l(h_w(x), y)]
+    \]
+    \item \defn Training Error: Expected loss over the training set
+    \item How to get training error:
+    \begin{enumerate}
+        \item Separate data in \textbf{Test Set}, \textbf{Training Set}, and \textbf{Validation Set (optional)}
+        \item Train model on \textbf{Training Set}
+        \item Tune hyperparameters on \textbf{Validation Set}
+        \item Find training error by inputting \textbf{Test Set} and comparing estimated outputs to true outputs
+    \end{enumerate}
+    \item \defn \(k\)-fold Cross Validation
+    \begin{enumerate}
+        \item Split data into Test \& Training sets.
+        \item Split training data in \(k\) equally sized groups.
+        \item Train the model on all data except for one block \(k\)-times. Using the left out block, compute validation error. Do NOT repeat left out blocks.
+        \item Average the \(k\) validation errors. This is the true error
+        \item Find Training error using Test set.
+    \end{enumerate}
+    \item Tuning hyperparameters
+    \begin{itemize}
+        \item \defn Grid Search: Build a model for each possible combination of all hyperparameters provided. Evaluate each model and select the model that performs the best.
+        \begin{itemize}
+            \item Very expensive computationally.
+        \end{itemize}
+        \item \defn Random Search: Try random combinations of hyperparameters
+        \begin{itemize}
+            \item Reaches a very good hyperparameter combination quickly, but it does not always find the best methods
+            \item Can find combinations of parameters with 5\% optima in only 60 iterations with probability 95\%
+        \end{itemize}
+    \end{itemize}
+    \item Goodness of Fit
+    \begin{itemize}
+        \item Mean Squared Error: Average squared error
+        \[
+            MSE = \frac{1}{n} \cdot \sum_{i}(y_i - \hat{y_i})^2
+        \]
+        \item Mean Absolute Error: Average absolute error
+        \[
+            MAE = \frac{1}{n} \cdot \sum_{i}|y_i - \hat{y_i}|
+        \]
+        \item \(R^2\): What percentage (\% ) of the data can be explained by your model
+        \[
+            R^2 = 1 - \frac{\sum_i (y_i - \hat{y_i})^2}{\sum_i (y_i - \bar{y})^2}
+        \]
+    \end{itemize}
+    \item Bias-Variance Decomposition of Model Predictor Error
+    
+\end{itemize}
+
+\newpage
+
+\section{Classification}
+\begin{itemize}
+    \item \defn Class: What type something is
+    \item \defn Binary Classification: Classifying something into one of two classes \((k=2)\)
+    \item \defn Multiclass Classification: Classifying something into one of \(k\) classes \((k>2)\)
+    \item Multiclass classification is usually just repeated binary classification
+    \begin{itemize}
+        \item \defn One-vs-Rest (OVR): Train \(k\) binary classifiers, each of which is trained to distinguish between one, unique class and the rest
+        \item \defn One-vs-One (OVO): Train \(\frac{k(k-1)}{2}\) binary classifiers, each of which is trained to distinguish between two, unique classes. See if a data point is more likely to be one class or another. Choose the winning class until there are no more classes to compare.
+    \end{itemize}
+    \item In most cases, each class is disjoint (i.e. each input is assigned to exactly one class)
+    \item The input space is divided in \(R_k\) regions, one for each class (\(C_k\))
+    \item The boundaries between each region are \textbf{decision boundaries}
+    \item One way to represent classifiers in using discriminant functions: \(g_i(x)\) where \(i \in [k]\).
+    \item The classifier assigns a feature vector, \(x\), if a class, \(C_i\) if \(g_i(x) > g_j(x)\) for all \(j \neq i\).
+    \item One popular discriminant function is \(g_i(x) = P(C_i | x)\) (maximum posterior probability).
+    \[
+        g_i(x) = P(C_i | x)
+        = \frac{P(x | C_i)P(C_i)}{\sum_{j=1}^{k} P(x | C_j)P(C_j)}
+        = P(x | C_i)P(C_i)
+        = \ln P(x | C_i) + \ln P(C_i)
+    \]
+    \item For the two-class case, we use two discriminant functions: \(g_1(x)\) and \(g_2(x)\) and assign \(x\) to \(C_1\) if \(g_1(x) > g_2(x)\) and \(C_2\) otherwise.
+    \item We can also define a discriminant function:
+    \[
+        g(x)
+        = g_1(x) - g_2(x)
+        = \ln P(x | C_1) + \ln P(C_1) - \ln P(x | C_2) - \ln P(C_2)
+        = \ln \frac{P(x | C_1)P(C_1)}{P(x | C_2)P(C_2)}
+        = \ln \frac{P(C_1)}{P(C_2)} + \ln \frac{P(x | C_1)}{P(x | C_2)}
+    \]    
+    \item \defn Confusion Matrix: A table that shows the number of true positives, true negatives, false positives (type I error), and false negatives (type II error)
+    \[
+        \begin{array}{c|c|c|}
+            \multicolumn{1}{c}{} & \multicolumn{2}{c}{\textbf{Predicted}} \\
+            \cline{2-3}
+            & \textbf{Positive} & \textbf{Negative} \\
+            \hline
+            \textbf{Actual Positive} & TP & FN \\
+            \hline
+            \textbf{Actual Negative} & FP & TN \\
+            \hline
+        \end{array}
+    \]
+    \[
+        \begin{array}{c||c|c|c|c||c}
+        \multicolumn{1}{c}{} & \multicolumn{4}{c}{\textbf{Predicted Class}} & \\
+        \cline{2-5}
+        & C_1 & C_2 & \cdots & C_k & \textbf{Total} \\
+        \hline
+        \hline
+        \textbf{Actual } C_1 & n_{11} & n_{12} & \cdots & n_{1k} & \sum_{j=1}^k n_{1j} \\
+        \hline
+        \textbf{Actual } C_2 & n_{21} & n_{22} & \cdots & n_{2k} & \sum_{j=1}^k n_{2j} \\
+        \hline
+        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+        \hline
+        \textbf{Actual } C_k & n_{k1} & n_{k2} & \cdots & n_{kk} & \sum_{j=1}^k n_{kj} \\
+        \hline
+        \hline
+        \textbf{Total} & \sum_{i=1}^k n_{i1} & \sum_{i=1}^k n_{i2} & \cdots & \sum_{i=1}^k n_{ik} & \sum_{i=1}^k \sum_{j=1}^k n_{ij} \\
+        \end{array}
+    \]
+    \item Accuracy: What percent of predictions are correct?
+    \[
+        \text{Accuracy}
+        = \frac{TP + TN}{TP + TN + FP + FN}
+        = \frac{\sum_{i=1}^k n_{ii}}{\sum_{i=1}^k \sum_{j=1}^k n_{ij}}
+    \]
+    \item Error Rate: What percent of predictions are incorrect?
+    \[
+        \text{Error Rate}
+        = 1 - \text{Accuracy}
+        = 1 -\frac{TP}{TP + TN + FP + FN}
+        = 1 -\frac{\sum_{i=1}^k n_{ii}}{\sum_{i=1}^k \sum_{j=1}^k n_{ij}}
+    \]
+    \item Precision: For a class, \(C_i\), percent of predicted \(C_i\)'s are correct?
+    \[
+        \text{Precision}
+        = \frac{TP}{TP + FP}
+        = \frac{n_{11}}{\sum_{j=1}^k n_{ij}}
+    \]
+    \item F1 Score: Harmonic mean of precision and recall
+    \[
+        F_1
+        = \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+    \]
+    \item As \(F_1 \rightarrow 0\), either \(\text{Precision}\) or \(\text{Recall}\) approaches 0. However, we want both to be high.
+    \item As \(F_1 \rightarrow 1\), both \(\text{Precision}\) and \(\text{Recall}\) approach 1.
+    \item \(F_\beta\) Score: Generalization of F1 Score
+    \[
+        F_\beta
+        = \frac{(1 + \beta^2) \cdot \text{Precision} \cdot \text{Recall}}{\beta^2 \cdot \text{Precision} + \text{Recall}}
+    \]
+    \item Generative models vs. Discriminative models:  
+    \begin{itemize}
+        \item \defn Generative models: Explicitly use prior probability to compute posterior probability
+        \item Ex. Naive Bayes, Hidden Markov Models, and Bayesian Networks
+        \[
+            \hat{y}
+            = \argmax_{i} P(C_i | x)
+            = \argmax_{i} P(x | C_i)P(C_i)
+        \]
+    \end{itemize}
+
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,171 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}   % advanced math environments
+\usepackage{amssymb}   % math symbols
+\usepackage{amsthm}    % theorem/proof environments (optional, kept for later)
+\usepackage{geometry}  % page margins
+\usepackage{enumitem}  % better lists
+\usepackage{graphicx}  % include images
+\usepackage{titlesec}
+\usepackage{hyperref}  % hyperlinks (keep this LAST)
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+
+% Title info
+\title{ECON 4310 HW2}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+One of 1 is domainance effect. 2x check. Not D or E tho
+
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+        \item \textit{\textbf{Compromise \& Dominance effects.} Imagine you are deciding which gas station to go to. You only care about two dimensions: price of gas \& distance to the station.
+        Gas station A costs \$3.63 per gallon and is 10 miles away. Gas station B costs \$4.01 per
+        gallon, but is only 2 miles away. With the addition of each of the following stations, identify
+        whether the compromise effect, dominance effect, or neither would apply to change consumers'
+        choices. Then, identify whether gas station A or B would be more likely to be visited with
+        the addition of this choice. (You may assume you have enough gas to get to any of these
+        options.)}
+        \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+            \item \textit{Gas station C costs \$3.23 per gallon and is 14 miles away.}
+            
+            Looking at the baseline options, Gas station A and Gas station B, Gas station A is farther but cheaper and Gas station B is closer but more expensive. Gas station C is priced lower than the other gas stations, but is farther away. This option could nudge me to Gas station A due to the compromise effect.
+
+            \item \textit{Gas station D costs \$4.14 per gallon and is a short block away.}
+            
+            Gas station D is closer than the other gas stations, but more expensive. This option could nudge me to Gas station B due to the compromise effect.
+
+            \item \textit{Gas station E costs \$4.14 per gallon and is 3 miles away.}
+            
+            Gas station E is more expensive than the other gas stations and in between Gas station A and Gas station B in terms of closeness. This will nudge me towards Gas station B due to the dominance effect.
+
+            \item \textit{Gas station F costs \$3.76 per gallon and is 8 miles away.}
+            
+            Gas station F is between Gas station A and Gas station B in both price and distance. For this reason, it will likely decrease the number of customers to both Gas station A and Gas station B, showing that it displays the compromise effect.
+
+            \item \textit{Gas station G costs \$3.85 per gallon and is 5 miles away.}
+
+            Gas station G is between Gas station A and Gas station B in both price and distance. For this reason, it will likely decrease the number of customers to both Gas station A and Gas station B, displaying the compromise effect yet again.
+        \end{enumerate}
+    \item \textit{\textbf{Choice Overload.} Answer the following questions about the short report Buying
+    Behavior as a Function of Parametric Variation of Number of Choices (Shah \& Wolford,
+    2007). This can be found on the files/readings page of Canvas.}
+    
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textit{Do the findings in this study appear to violate any established choice axioms? If yes,
+        which ones and why?}
+
+        This violates IIA. If someone chooses to not buy in a choice set, then they will not buy in any smaller choice set. However, we see that this is not true in the study. In the largest choice set, \(n=20\), the proportion of people who chose was lower than in previous choice sets \((n=18, 14, 12, 10, \dots)\).
+
+        \item \textit{Evaluate the experimental methods used in the study. Identify at least one strength and
+        one weakness, and briefly describe one way you would improve the design.}
+
+        \textbf{Strength:} They varied the number of options parametrically (2-20, in steps of 2) and analyzed the full curve, which let them detect the inverted-U relation between assortment size and purchasing rather than a simple “more vs. less” comparison. \\
+
+        \textbf{Weakness:} The generalizability is limited. This study was conducted on Dartmouth undergrads choosing among low-stakes, similar \$2 pens. It is possible that this may not reproduce over other populations or products. \\
+
+        \textbf{Improvement:} I would improve it by running a randomized field experiment on real (or mock) online restaurant menus
+        \begin{enumerate}[label=\textbf{(\roman*)}, leftmargin=*]
+            \item Assign user-sessions to small, medium, or large menu assortments from the same brand. Hold prices, photos, and descriptions constant while varying the total number of items, items per category, and the number of options that can appear on screen. Most crucially, I would vary the population by changing where the restaurant is (ex. USA, Europe, Asia, Africa, etc.) to test if Shah and Wolford's findings replicate across different populations.
+            \item I would track the following metrics: order size, conversion, add-to-cart rate, time-to-first click, average order value (AOV), and number of card edits and removals.
+            \item I would expect conversion, order size, add-to-cart rate, and AOV to follow an inverse-U shape. I would expect time-to-first click and the number of card edits and removals to increase as the choice set increases.
+        \end{enumerate}
+    \end{enumerate}
+    \item \textit{\textbf{Reference Dependence.} As discussed in class, the endowment, default, status
+    quo, and sunk cost effect are related forms of reference dependence. For each of the following
+    1
+    examples: (i) Identify and explain which type of reference-dependent effect is illustrated. (ii)
+    explain if the example is a bias or if it could be aligned with rational decision making. If you
+    are unsure, explain what other data you would need to make that assessment.}
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textit{Switching phone suppliers is often seen as a simple way to save money, as companies like
+        AT\&T and Verizon often provide long-lasting deals to new customers. Yet, despite
+        this, 82\% of Americans say they are ``not at all likely'' to change carriers (Shriber, 2023).}
+        
+        \begin{enumerate}[label=\textbf{(\roman*)}, leftmargin=*]
+            \item Status quo effect. This is displayed as most people will not switch carriers because they are content with their deal in the status-quo even if there is a better deal for them if they switched carriers.
+            \item Depending on the deal, this may or may not be an example of bias. In the case where a new deal offers the customer more utility (ex. the new deal is cheaper, offers phone upgrades, etc. which is what the customer wants) but the customers chooses to stay, this is an example of status quo bias. However, if the deal does not increase the customer's utility, then staying is rational.
+        \end{enumerate}
+        
+        \item \textit{Dave consistently finds himself subscribed to many brands' marketing campaigns because
+        when he checks out online, the box for ``Subscribe to hear updates!'' is pre-checked.}
+        
+        \begin{enumerate}[label=\textbf{(\roman*)}, leftmargin=*]
+            \item Default effect. This is displayed because he is accepting a pre-set option, subscribing to the emailing list, which is the definition of the Default effect.
+            \item Again, this depends on what Dave wants. If Dave \textit{wants} to be on all these mailing lists, then he is acting rationally. However, if he finds all these emails cumbersome and does not want to be on the mailing list, then he displays the default effect as it is causing him to act irrationally.
+        \end{enumerate}
+
+        \item \textit{American homeowners overestimate the value of their homes by 1.3\% on average (Dreesen \& Damen, 2022).}
+        
+        \begin{enumerate}[label=\textbf{(\roman*)}, leftmargin=*]
+            \item Endowment effect. This is displayed because people overvalue objects they personally own.
+            \item I believe this is an example of the Endowment effect because homes are things people are very attached to emotionally (because they live there) and financially (because mortgages and home loans are very expensive to pay). However, the error in this example is very low, \(1.3\%\), so I think it might be possible that no error is displayed. It really depends on the significance of this study. This could have happened due to inattentiveness.
+        \end{enumerate}
+    \end{enumerate}
+
+    \item \textit{\textbf{Endowment effect.} Suppose a decision maker has the opportunity to buy a single
+    unit of some good. Her willingness to pay (WTP; i.e., her reservation value of the good),
+    can be elicited in an incentive compatible manner (e.g.,, a second price auction). Suppose
+    her WTP is \$100. Now suppose the same decision maker is in possession of the good. Her
+    willingness to accept (WTA; i.e., her reservation price for selling the good—or the lowest
+    price she would accept to sell the good), can also be elicited in an incentive compatible way.}
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textit{Suppose the decision maker is a standard rational agent. What is her WTA?}
+        
+        If the decision marker is a standard rational agent, her \(WTA = WTP = \$100\)
+
+        \item \textit{Suppose her actual elicited WTA is \$110. Can this decision maker be a standard rational
+        agent, if ownership of the good conveys no information on its quality? Why or why not?}
+        
+        No as this violates IIA. Given the set \(\{\text{``item''}, \$100\}\), she could choose the ``item'' over \(\$100\) as a seller. However, as a buyer she would be indifferent.
+
+        \item \textit{Provide a brief intuition for why, in your opinion, the endowment effect is commonly
+        observed. What kind of goods would be more prone to this behavior?}
+
+        In my opinion, the endowment effect is observed because we perceive the loss of an item as greater than the gain of an item. This is commonly observed for items with emotional value (ex. gifts, memorabilia, childhood items, etc.).
+    \end{enumerate}
+
+    \item \textit{\textbf{Endowment effect - Class Data.} Refer to the data from Lab Session 1 on
+    Canvas (posted with the assignment) and answer the following questions:}
+
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textit{What is the mean WTP? What is the mean WTA? Is there a statistically significant
+        difference between these two measures? Include results from a regression, t-test, or
+        another appropriate statistical analysis. You may use any statistical software you are
+        comfortable with.}
+
+        \begin{center}
+            \includegraphics[width = 0.8 \textwidth]{5a.png}
+        \end{center}
+
+        \item \textit{Do you notice any trends in the data over time?}
+        
+        Over time, there do not appear to be any clear trends. I looked at average price for buyers and sellers as a function of price using linear regression. My findings yielded two models with low \(R^2\). It should be noted that there not many data points \((n=7)\) to train these models on, which could have results in low \(R^2\) values. However, looking at the distribution of the data, there is no clear trend.
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{5b.png}
+        \end{center}
+        
+        \item \textit{Your class was the first in this dataset not to replicate the endowment effect. Why do
+        you think this might be? Are there any modifications you would make to the experiment
+        to increase the likelihood of replicating the effect?}
+
+        Part of the reason our class did not replicate the endowment in part due to the presence of one buyer outlier who chose a WTP of \(\$40\).
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{4d_i.png}
+        \end{center}
+        Although this could have been an actual subject's WTP, I believe someone may have been interfering with the data. To prevent this, we could have participants sign an oath stating that they are displaying their actual WTPs and WTAs. We could also use a auction system to try to find what people's maximum WTP is. The auction may be more effective than asking participants for their WTP or WTA because this process requires applicants to actively think about if they would buy or sell at a given price. 
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}   % advanced math environments
+\usepackage{amssymb}   % math symbols
+\usepackage{amsthm}    % theorem/proof environments (optional, kept for later)
+\usepackage{geometry}  % page margins
+\usepackage{enumitem}  % better lists
+\usepackage{graphicx}  % include images
+\usepackage{titlesec}
+\usepackage{hyperref}  % hyperlinks (keep this LAST)
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+
+% Title info
+\title{ECON 4310 HW4}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+    \item \textbf{Heuristics.} 
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+            \item \textbf{\textit{Why might the availability hueristic lead you to this conclusion?}}
+            
+            The availability heuristic is when we judge how likely something is based on how easily examples come to mind. Because software engineers are so common and visible in the Bay Area, especially in tech culture and media, it's easy to think of people like Tom as software engineers, making that conclusion feel natural.
+            
+            \item \textbf{\textit{Why might the representativeness heuristic lead you to this conclusion?}}
+            
+            The representativeness heuristic is when we judge something by how similar it is to our mental image of a category. Tom fits the stereotype of a software engineer, educated, works in tech culture, likes LinkedIn and coffee shops, so we assume he's one even though that may not necessarily be true.
+    \end{enumerate}
+
+    \item \textbf{Bayes Rule.}
+
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textbf{\textit{With what probability is the driver drunk? Show the calculation.}}
+        
+        Let \(D = \text{Drunk}\) and \(\oplus = \text{Positive}\). We know that \(P(D) = \frac{1}{1000}\), \(P(\oplus | D) = 1\), and \(P(\oplus | \neg D) = 0.05\). We want to find the \(P(D | \oplus)\). Using Bayes' Rule:
+
+        \[
+            P(D | \oplus)
+            = \frac{P(\oplus | D) \cdot P(D)}{P(\oplus | D) \cdot P(D) + P(\oplus | \neg D) \cdot P(\neg D)}
+        \]
+        \[
+            = \frac{1 \cdot \frac{1}{1000}}{1 \cdot \frac{1}{1000} + 0.05 \cdot \frac{999}{1000}}
+            = \frac{1}{1 + 0.05 \cdot 999}
+            = \frac{1}{1 + 49.95}
+            = \frac{1}{50.95}
+            = 0.0196
+            = 1.96\%
+        \]
+        
+        \item \textbf{\textit{Compare your answer above with your conjecture about the typical response you may
+        receive if you polled 100 random people with this question at your favorite coffee shop
+        or library one day. Briefly explain any predicted discrepancy.}}
+
+        I would guess that the typical response would be around 0\%. When people hear 1/1000 drivers is drunk, the number is so small they likely view it as 0. Then, when they hear 5\% of sober drivers test positive for drunkness, they ignore the true proportion of drunk drivers, 1/1000. Thus, they would likely estimate the probability of a driver being drunk as 0\%.
+    \end{enumerate}
+
+    \item \textbf{Search and Satisficing.}
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textbf{\textit{Calculate the expected marginal benefit of searching one more item.}}
+        
+        We know that the current best alternative has benefit \(b = \$50\). The marginal benefit, \(MB\), of another search is:
+        \[
+            MB
+            = \int_0^{100} (x - b) \cdot f(x) dx - b
+        \]
+        where \(x\) is the value of the next item found. Given \(x \sim U(0, 100)\), we have \(f(x) = \frac{1}{100}\). Using this and \(b=50\),
+        \[
+            MB
+            = \int_{50}^{100} \frac{x - 50}{100} dx - 50
+            = \frac{1}{100} \left[\frac{x^2}{2} - 50x \right]_{50}^{100} - 50
+            = \frac{1}{100} \left( \frac{100^2}{2} - 50 \cdot 100 \right) - \frac{1}{100} \left( \frac{50^2}{2} - 50 \cdot 50 \right) - 50
+        \]
+        \[
+            = \frac{1}{100} \left[ \left( 10000 - 5000 \right) - \left( 1250 - 2500 \right) \right] - 50
+            = \frac{1}{100} \left( 5000 + 1250 \right) - 50
+            = \frac{6250}{100} - 50
+            = 62.5 - 50
+            = 12.5
+        \]
+
+        \item \textbf{\textit{If the search cost is \(k = 20\), what is the optimal plan of action?}}
+        
+        If there is a search cost, then the marginal benefit of searching one more item is:
+        \[
+            MB - k
+            = 12.5 - 20
+            = -7.5
+        \]
+        Thus, the optimal plan of action is to not search any more items.
+
+        \item \textbf{\textit{If the search cost is \(k = 10\), what is the optimal plan of action?}}
+        
+        If the search cost is \(k = 10\), then the marginal benefit of searching one more item is:
+        \[
+            MB - k
+            = 12.5 - 10
+            = 2.5
+        \]
+        Thus, the optimal plan of action is to search one more item.
+    \end{enumerate}
+    \item \textbf{Rational Inattention.}
+    \[
+        A = \{B, N\},
+        \quad S = \{G, P\}
+        \quad U(B, G) = 10, \quad U(B, P) = 0, \quad U(N, G) = 6, \quad U(N, P) = 6
+    \]
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textbf{\textit{If your prior belief is that \(Pr(G) = Pr(P ) = 0.5\), what is your optimal action based on
+        this belief? Why?}}
+
+        If my prior belief is that \(Pr(G) = Pr(P ) = 0.5\), then my optimal action is to choose \(N\) because \(EU(N) > EU(B)\).
+        \[
+            EU(N) = Pr(G) \cdot U(N, G) + Pr(P) \cdot U(N, P)
+            = 0.5 \cdot 6 + 0.5 \cdot 6
+            = 6
+            \]
+            \[
+            EU(B) = Pr(G) \cdot U(B, G) + Pr(P) \cdot U(B, P)
+            = 0.5 \cdot 10 + 0.5 \cdot 0
+            = 5
+        \]
+        Hence, \(EU(N) > EU(B)\) and so our optimal action is to choose \(N\).
+
+        \item \textbf{\textit{What is your optimal action if you see signal p? Why?}}
+        If we see signal \(p\), then \(Pr(p | P) = 0.8\) and \(Pr(p | G) = 0.2\). Thus, the expected utilities of our choices are:
+        \[
+            EU(N) = Pr(p | G) \cdot U(N, G) + Pr(p | P) \cdot U(N, P)
+            = 0.2 \cdot 6 + 0.8 \cdot 6
+            = 6
+            \]
+            \[
+            EU(B) = Pr(p | G) \cdot U(B, G) + Pr(p | P) \cdot U(B, P)
+            = 0.2 \cdot 10 + 0.8 \cdot 0
+            = 2
+        \]
+        Hence, \(EU(N) > EU(B)\) and so our optimal action is to choose \(N\).
+
+        \item \textbf{\textit{What is your optimal action if you see signal g? Why?}}
+        If we see signal \(g\), then \(Pr(g | G) = 0.8\) and \(Pr(g | P) = 0.2\). Thus, the expected utilities of our choices are:
+        \[
+            EU(N) = Pr(g | G) \cdot U(N, G) + Pr(g | P) \cdot U(N, P)
+            = 0.8 \cdot 6 + 0.2 \cdot 6
+            = 6
+            \]
+            \[
+            EU(B) = Pr(g | G) \cdot U(B, G) + Pr(g | P) \cdot U(B, P)
+            = 0.8 \cdot 10 + 0.2 \cdot 0
+            = 8
+        \]
+        Hence, \(EU(B) > EU(N)\) and so our optimal action is to choose \(B\).
+
+        \item \textbf{\textit{What is your ex ante exepected utility if you know you have access to the signal}}
+        
+        Our ex ante expected utility, \(\epsilon\), is:
+        \[
+            \epsilon = \frac{1}{2} \cdot EU(N) + \frac{1}{2} \cdot EU(B)
+            = \frac{1}{2} \cdot 6 + \frac{1}{2} \cdot 8
+            = 7
+        \]
+        Thus, our ex ante expected utility is 7.
+
+        \item \textbf{\textit{If you can choose between (i) having no information beyond your prior, and (ii) having
+        the signal above, what is the most you should be willing to pay for the signal?}}
+
+        As demonstrated in \textbf{(a)}, without a signal, we choose \(N\) and so \(EU(N) = 6\), which we will call \(\delta\). However, as demonstrated in \textbf{(d)}, \(\epsilon = 7\). Thus, the highest cost we should be willing to pay for a signal is, \(c\) s.t. \(\epsilon - c = \delta\). Thus,
+        \[
+            \epsilon - c = \delta
+            \Rightarrow
+            c = \epsilon - \delta
+            = 7 - 6
+            = 1
+        \]
+        Thus, the most we should be willing to pay, \(c\), for the signal is \$1.
+    \end{enumerate}
+    \item \textbf{Rational Inattention II}
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textbf{\textit{Is the marginal benefit of answering the first question correctly greater than, less than,
+        or equal to the marginal benefit of answering the second question correctly? Why?}}
+
+        The marginal benefit of answering the first question correctly is equal to the marginal benefit of answering the second question correctly, because they `count equally towards [our] grade.'
+
+        \item \textbf{\textit{Is the marginal cost of answering the first question correctly greater than, less than, or
+        equal to the marginal benefit of answering the second question correctly? Why?}}
+
+        The marginal cost of answering the first question correctly is less than the marginal benefit of answering the second question correctly. This is because the first question is easier, so it costs us less to get the same probability of getting it right as the second question.
+
+        \item \textbf{\textit{f you are time-constrained (i.e., with insufficient time to confidently answer either ques-
+        tion correctly), to which question should you devote more time? Why? Base your answer
+        on your conclusions from parts (a) and (b).}}
+
+        If we don't have enough time to confidently answer either question correctly, we should devote more time to the first question because the marginal benefit of answering it correctly, we should devote more time to the first question. This is because it takes less time to get a high probability of getting it right than the second question.
+
+        \item \textbf{\textit{Suppose that you wind up devoting all of your time during the exam to working on the
+        first question (even if that was not optimal), and are 80\% sure that the correct answer
+        is False. After answering the first question, you have only enough time to guess an
+        answer to the second question. What answer should you provide (this is obvious) and
+        how confident are you that your answer to the second question is correct (this requires
+        a calculation)?}}
+
+        If we are 90\% confident the first answer is false, it should likely answer false for the second question as it was given that there is a 90\% chance both answers are true or both answers are false. As for the confidence, we are 72\% such as answer is correct.
+
+        Let \(T = \text{True}\), \(F = \text{False}\), \(? = \text{Unknown}\), \(p = P(\text{Both true or false}) = 0.9\). We want to find \(P((?, T))\).
+        \[
+            P((?, T))
+            = P((F, ?)) \cdot p + P((T, ?)) \cdot (1-p)
+            = 0.8 \cdot 0.9 + 0.2 \cdot 0.1
+            = 0.72 + 0.02
+            = 0.74
+        \]
+    \end{enumerate}
+    \item \textbf{Rational Inattention: Class Data}
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textbf{ }
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.6\linewidth]{6a.png}
+            \label{fig:6a}
+        \end{figure}
+        As we can tell from this figure, although NC has the highest accuracy in the first period, it also has the lowest time spent. Thus, it is not a good proxy for gathering information.
+
+        \item \textbf{ }
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.6\linewidth]{6b.png}
+            \label{fig:6b}
+        \end{figure}
+        As we can tell from this figure, incorrect answers took longer on average than correct ones.
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Syllabus / How to Class Works}{2}{section.1}%
+\contentsline {section}{\numberline {2}Intro}{2}{section.2}%
+\contentsline {section}{\numberline {3}Model 1 - Why are more people going to college?}{2}{section.3}%
+\contentsline {section}{\numberline {4}Deterministic Wage Growth}{6}{section.4}%
+\contentsline {section}{\numberline {5}Stochastic Wage Growth}{7}{section.5}%
+\contentsline {section}{\numberline {6}Work in College}{8}{section.6}%
+\contentsline {section}{\numberline {7}The College Premium}{9}{section.7}%
+\contentsline {section}{\numberline {8}Skill-based Technology}{10}{section.8}%
+\contentsline {section}{\numberline {9}Multi-period Model}{12}{section.9}%
+\contentsline {section}{\numberline {10}Labor Supply}{13}{section.10}%
+\contentsline {section}{\numberline {11}Schooling \& Labor Supply}{15}{section.11}%
+\contentsline {section}{\numberline {12}Midterm Review}{16}{section.12}%
+\contentsline {section}{\numberline {13}Research:}{17}{section.13}%

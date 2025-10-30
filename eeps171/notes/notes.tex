@@ -1,0 +1,347 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}   % advanced math environments
+\usepackage{amssymb}   % math symbols
+\usepackage{amsthm}    % theorem/proof environments (optional, kept for later)
+\usepackage{geometry}  % page margins
+\usepackage{enumitem}  % better lists
+\usepackage{graphicx}  % include images
+\usepackage{titlesec}
+
+\usepackage{hyperref}  % hyperlinks (keep this LAST)
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+
+\graphicspath{{images/}}
+
+% Title info
+\title{EEPS 1710 Notes}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{The Sky - Lecture 2  (8/27/2025)}
+\begin{itemize}
+    \item \defn Apparent magnitude - How bright an object is on Earth. The more negative the number is, the brighter it is
+    \item Below are the apparent magnitude of some objects. You don't need to memorize these, but know roughly where things are
+\end{itemize}
+
+\begin{center}
+    \begin{tabular}{|c|l|c|l|}
+        \hline
+        \textbf{Apparent Magnitude} & \textbf{Object} & \textbf{Apparent Magnitude} & \textbf{Object} \\
+        \hline
+        -27 & Sun & 2 & Polaris, Mars (min.)\\
+        -13 & Full Moon & 5 & Vesta (max.), Uranus (max.) \\
+        -5  & Venus & 6 & Typical limit of naked eye \\
+        -3  & Jupiter (max.), Mars (max.) & 7 & Ceres (max.) \\
+        -2  & Mercury (max.) & 8 & Neptune (max.) \\
+        -1  & Sirius & 10 & Typical binoculars \\
+         0  & Vega, Saturn (max.) & 14 & Pluto (max.) \\
+         \hline
+    \end{tabular}
+\end{center}
+
+\begin{itemize}
+    \item Most planets are white / yellow, except Mars (red), Uranus (white, light blue), Neptune (blue)
+    \item The colder a star is, the redder it is. The hotter a star is, the bluer it is
+    \item Planets do not emit light. They reflect it.
+    \item Stars move across the sky but maintain fixed positions because the Earth is rotating
+    \item There is a north celestial pole (visible in northern hemisphere) and south celestial pole (visible in southern hemisphere)
+    \item Everything rises in the East and sets in the West
+    \item \defn Celestial sphere - Imagine all the stars / planets are on the surface of a sphere and the Earth is a concentric sphere within the celestial sphere
+    \item People thought the celestial sphere spinned around the Earth for ~2000 years. However, it is the Earth that rotates
+    \item Non-fixed objects in the celestial sphere
+    \begin{itemize}
+        \item Comets/meteors (often move in straight lines, not circles)
+        \item Planets (move in circles but gradually will not follow the same path )
+    \end{itemize}
+    \item Seven Classical Planets (visible to the naked eye)
+    \begin{itemize}
+        \item Sun
+        \item Moon
+        \item Mercury
+        \item Venus
+        \item Mars
+        \item Jupiter
+        \item Saturn
+    \end{itemize}
+    \item \defn Depth-motion Parallax - Things close appear to move faster than things far away (think about hills in the distance when you're driving vs. the corn)
+    \item For this reason, people incorrectly ordered the planets for millenia
+    \item \defn Geocentric Model - Theory that the Earth is at the center of the universe and all celestial bodies orbit the Earth
+    \item \defn Heliocentric Model - Theory that the objects in our solar system orbit the sun
+    \item The Geocentric model was disproven by studying Mars in retrograde (it didn't have a fixed position in the sky)
+    \item Additionally, Venus has faces, which are produced by light reflecting off of Venus
+\end{itemize}
+
+\subsection*{Equatorial Coordinate System}
+\begin{itemize}
+    \item Imagine the Earth is a concentric sphere within the celestial sphere
+    \item Let the North and South Poles point to the north and south celestial pole, respectively
+    \item \defn Right ascensions - Arcs on the celestial sphere that go from North to South
+    \item \defn Declinations - Arcs on the celestial sphere that go from East to West
+\end{itemize}
+
+\section{The Earth - Lecture 3-4 (9/3/2025 - 9/8/2025)}
+\subsection*{Horizontal Coordinate System}
+\begin{itemize}
+    \item Imagine you are standing outside and there is a line, called a zenith going straight up through your body
+    \item The coordinate of an object is determined by the angle between the ground and the object, altitude, and the angle between north and the object, azimuth.
+    \item \textbf{NOTE:} This system is not absolute, because the zenith depends on where you are on Earth
+\end{itemize}
+
+\subsection*{Proof the Earth is Round}
+\begin{itemize}
+    \item Well of Syene
+    \item Ships ``sink'' over the horizon
+\end{itemize}
+
+\subsection{Shape of Objects}
+\begin{itemize}
+    \item Large objects are spherical because gravity forces this shapes
+    \item Smaller objects are ususally not spherical because of this
+    \item The transition between spherical and non-spherical objects is a few hundred km
+    \item Earth's surface hastwo types of regions (continents and oceans)
+    \item The distribution of elevation is bimodal (on peak is just above sea level and the other is the ocean floor)
+    \item The continental rock ``floats'' over the oceanic rock, because the continental rock is granite, which is less dense than the oceanic rock, basalt.
+    \item Earth is on the rocky planet that has a bimodel elevation distribution because the other planets are built out of one rock
+\end{itemize}
+
+\subsection{Earth Structure}
+\begin{enumerate}
+    \item Crust - Thin, rocky outer layer (10-15km)
+    \item Mantle - Mantle - Hot rock. Same consistency as room temp butter
+    \item Outer core - liquid nickel and iron
+    \item Inner core - Solid nickel and iron
+\end{enumerate}
+
+\begin{itemize}
+   \item We know this by observing volcanoes, earthquakes, meteorites, drilling
+    \begin{itemize}
+        \item Volcanoes - We observe the rocks that come out. This tells us about the composition of the mantle/core
+        \item Earthquakes - We observe body waves (P-waves and S-waves)
+        \begin{itemize}
+            \item P-waves - Earthquake waves that shift Earth forward and backward
+            \item S-waves - Earthquake waves that shfit the Earth up and down
+        \end{itemize}
+        \item Seismogram - A machine that measures the Earth's horizontal movement
+        \item Seismograph - The graph generated by the Seismogram
+        \item When earthquakes happen, we observe the P-wave, then the S-wave, then the surface waves
+    \end{itemize}
+    \item Initially, the Earth's entire core was liquid, however, it's been cooling
+    \item We know the Earth was a liquid core because of size of the shadow zone in earthquakes
+    \item The higher the density of the rock, the faster the wave is
+    \item This allows us to determine the Earth's composition and temperature, because we can measure the speed of P and S waves and backtrack the earth's density
+    \item We notice that earthqakes and volcanoes tend to happen more along these lines, which outline the tectonic boundaries
+    \item Plate tectonics
+    \begin{itemize}
+        \item The earth contains several plates (which are large pieces of crust)
+        \item These plates border each other and rub against each other, leading to earthquakes and volcanoes
+        \item Types of plate boundaries
+        \begin{enumerate}
+            \item \defn Divergent Plate Boundary (Fault type: Normal) - Plates are moving away from each other
+            \item \defn Transform Plate Boundary (Fault type: Strike-slip) - Plates are moving in opposite directons side to side
+            \item \defn Convergent Plate Boundary (Fault type: Reverse or thrust) - One plate moves underneath another
+        \end{enumerate}
+        \item Earthquakes can occur at any plate boundary
+        \item Volcanoes
+        \begin{itemize}
+            \item See slides / go to OH
+            \item \textbf{Divergent boundary:} Forms because the plates are being pulled apart, exposing melted rock
+            \item \textbf{Convergent boundary:} The subducting plate will move seawater underground, which lowers the melting point of rock, causing volcanoes to form
+            \begin{itemize}
+                \item Note that an oceanic plate MUST collide into a continental plate. If two continental crusts have a convergent boundary, mountains rise, but no volcanoes
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\section{The Moon - Lecture 5 (9/10/2025)}
+
+\begin{itemize}
+    \item The moon's rotation period is the same as it's orbital period. For this reason, the Moon spins on its axis once for every revolution around the Earth
+    \item As the moon rotates, it wobbles, letting us see 55\% of item
+    \item Has a low-land area (Mare) and a higher area (highlands)
+    \item Mare is lower \& flatter. Made of cooled lava
+    \item Highland is higher \& bumpier. Made of plageoclates
+    \item Mare is younger than the highlands
+    \item Core is not in the center of the moon---rather it's closer to the Earth
+    \item We believe this is true because of Earth's gravity pulling the core towards it
+    \item This is why the near side has a mare and the other side doesn't
+    \item Mare was formed later than the highland. We know this from
+    \begin{enumerate}
+        \item Radioactive dating. Proves highland is about 4B years older than the mare
+    \end{enumerate}
+    \item We know about the moon's insides by recording moonquakes.
+    \begin{itemize}
+        \item Done the same way we measure quakes on Earth (S-waves, P-waves)
+        \item The Apollo missions put seismometers on the moon.
+    \end{itemize}
+    \item How did the moon form?
+    \begin{itemize}
+        \item \textbf{Fission Theory:} The moon was spun out of the Earth \(\leftarrow\) wrong
+        \item \textbf{Capture Theory:} The moon was an asteroid that got captured by the Earth \(\leftarrow\) wrong because it has very similar material to the Earth
+        \item \textbf{Condensation Theory:} The Earth and moon were formed simultaenously as asteroids collided and combined with each other \(\leftarrow\) wrong
+        \item \textbf{Giant Impact Hypothesis:} Theia (hypothetical planet) smashed into the Earth, forming the moon.
+    \end{itemize}
+    \item Composition
+    \begin{itemize}
+        \item \(M_{Moon} = \frac{1}{80}M_{Earth}\)
+        \item \(\rho_Moon = \frac{1}{2}\rho_{Earth}\)
+    \end{itemize}
+\end{itemize}
+
+\section{The Sun}
+\begin{itemize}
+    \item \defn Sun spots - Dark spots on the sun. These are regions that are cooler than the rest of the surface of the sun (4,500K instead of 5,800K)
+    \item Discovered by Galileo, who stared at the sun using a telescope
+    \item Galileo noticed that the sun spots moved and take about 1 month to rotate around the sun, which taught us the sun rotates.
+    \item However, the rotation is not uniform. The closer you are to the equator, the faster it rotates (\textbf{differential rotation}).
+    \item \defn Solar Granulation - The sun is made of corn kernel shaped bumps called \textbf{Granules}. Hot gas rises through the center and then falls at the sides of the kernels. This process is called \textbf{convection}.
+    \item Each granule is massive (about the size of Texas).
+    \item Convection is constantly happening through the Sun.
+    \item Sunspots appear to form in 11-year cycles (over an 11 year period, there will be an increasing and then decreasing number of sunspots)
+    \item Over this period, the sunspots will gradually start forming closer and closer to the equator due to magnetic activity
+    \begin{itemize}
+        \item This is because the magnetic field lines in the sun get tangled due to differential rotation
+        \item At the ends of the magnetic field lines, there will be sunspots
+    \end{itemize}
+    \item \defn Maunder Minimum - Between 1650 and 1700, there are no recorded sunspots. Scientists debate on if this is true or if nobody was recording sunspots during this time.
+    \item The more sunspots there are, the brighter the sun is. This is because there are more photons being emitted.
+    \item Sun layers (theory):
+    \begin{enumerate}
+        \item Convection zone - Outermost layer where convection happens; \(\rho = 1.4 g/cm^3\)
+        \item Core - Innermost layer; hotter and denser than the radiation zone; this is where the energy and light the sun emits is generated; \(\rho = 150 g/cm^3\); temperature is 10M+ K
+        \item Radiation zone - Hotter and denser than the convection zone; this is where the energy created by the core is realeased via radiation from fusion reactions (fusing two atoms to create a new one)
+    \end{enumerate}
+    \item The sun is red because the emission spectrum of hydrogen (what the sun is made of) is red.
+\end{itemize}
+
+\section{Earth, Moon, and Sun}
+\begin{itemize}
+    \item Crashcourse on what you \textit{need} to know
+    \item Sun
+    \begin{itemize}
+        \item 3 layers: Core, radiative, and convective zones
+        \item Fusion only occurs in the core (how photons (which carry energy) are made)
+        \item Photons are radiated out of the core because radiation is the most efficient way to transmit energy
+        \item Hot and cold gas rise/sink via granules in the convective zone
+        \item Photosphere: physical surface of the sun, covered in granules
+        \item Some areas of the sun are disrupted by magnetic fields, which prevent convection from occuring, leading to colder zones, called sun spots
+        \item Sun spots form in 11 year cycles  
+        \item Sun atmopshere contains two parts:
+        \begin{itemize}
+            \item Chromosphere: low atmopshere. the part is red because the sun is made of hydrogen. it's red due to the emission spectrum.
+            \item We see the red due to Kirchoff's Three Laws
+            \item Corona: high atmosphere: very thin. white because it is reflecting sunlight. only visible during solar eclipses
+            \item 
+        \end{itemize}
+        \item \defn Solar Winds: Stream of charged particles (protons and electrons) emitted from the Sun
+        \item The Earth has a magnetic field due to its liquid iron core. Solar Wind is deflected by the magnetic field (either around the Earth or it goes into the poles)
+        \item When charged particles go into the poles, this forms aurora borealis (North Lights) as particles hit the atmosphere
+        \item \textbf{Missions:}
+        \begin{itemize}
+            \item Genesis Mission: Collected solar wind particles \& returned to Earth. Crashed in the Utah desert, rendering most findings usuable
+            \item Parker Solar Probe: Going to observe the Sun closer than any mission before. Uses a heat shield to help keep it cool. Launched in 2018.
+        \end{itemize}
+        \item \textbf{Solar Eclipses:}
+        \begin{itemize}
+            \item Partial eclipse: Moon partially covers the sun
+            \item Annular eclipse: Moon is on top of the sun but does not completely cover item
+            \item Total eclipse: Moon completely blocks out the sun
+            \item Solar eclipses happen about every 6 mo. because the Earth's orbit around the Sun and Moon's orbit around the Earth are both ecliptic \& do not perfectly overlap.
+            \item Eclipses only happen when the two overlap
+        \end{itemize}
+        \item \textbf{The MOON}
+        \begin{itemize}
+            \item Supermoon: Big moon. When it's closest to the earthquakes
+            \item Blood moon: Occurs during lunar eclipse
+            \item BLue moon: When there are two full months in a calendar month
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\section{Telescopes}
+\begin{itemize}
+    \item \defn Telescope - A device that collects light and magnifies it
+    \item \defn Aperture - The diameter of the telescope's mirror or lens. This determines how zoomed in the telescope is. The larger the aperture, the shorter away you can see things.
+    \item On earth, you can only make telescopes to see visible light and radiowaves due to the atmosphere.
+    \item \defn Radio Telescope - A telescope that collects radio waves. Mainly used to observe cold and dark objects (molecular clouds, interstellar dust)
+    \item Arecibo Observatory - It was the largest radio telescope in the world. It was built in 1963 and collapsed in 2020.
+    \item Green Bank Telescope - Another radio telescope. This can be moved, unlike Arecibo.
+    \item \defn Thirty Meter Telescope - 30m telescope being constructed in Hawaii.
+    \item \defn Extremely Large Telescope - 40m telescope in the Atacama Desert in Chile (almost done)
+    \item \defn Univesity of Hawaii 2.2m telescope - A telescope at the University of Hawaii.
+    \item Telescopes were invented in Europe around 1600
+    \item Review how lenses and refraction works in telescopes. 
+\end{itemize}
+
+\section{Mercury}
+\begin{itemize}
+    \item Mercury is the smallest planet in the solar system and closest to the Sun.
+    \item One of the classical planets, known for a long time
+    \item Very difficult to see with naked eye b/c it's very close to the Sun in the sky, very small, and farther from the Earth than Mars or Venus
+    \item You only have 2 hours / day to see Mercury in the sky (around sunrise / sunset)
+    \item Days \& Years on Mercury
+    \begin{itemize}
+        \item Mecurian Orbital Year: 88 Earth days
+        \item Mercurian Sidereal Day: 59 Earth days
+        \item Mercurian Solar Day: 176 Earth days
+    \end{itemize}
+    \item We can use the Doppler Effect to determine a planet's rotational speed
+    \begin{itemize}
+        \item If a planet is not rotating, when we send signals at it, they are reflected back to us at the same frequency.
+        \item If a planet is rotating, when we send signals at it, they are reflected back to us at a different frequency.
+        \item The part of the planet moving towards us will be reflected at a higher frequency, and the part of the planet moving away from us will be reflected at a lower frequency.
+    \end{itemize}
+\end{itemize}
+
+\section{The Planets (Summarized)}
+
+\begin{itemize}
+    \item \defn Orbital Year - The time it takes for a planet to orbit the Sun
+    \item \defn Sidereal Day - The time it takes for a planet to rotate once on its axis
+    \item \defn Solar Day - The time it takes for a planet to rotate once on its axis and orbit the Sun
+    \item All years / days are measured in Earth days / years
+    \item Has virtually no atmosphere
+    \item Mercury has intercrater plains (plains with lots of craters) and smooth plains (areas with fewer craters)
+    \item We are not sure what these plains are mode of. We suspect they are formed by the same rock because they have the same color.
+    \item \defn Caloris Basin - Large basin (1/2 the size of the planet) which is 1550km in diameter. We suspect this is a impact basin.
+    \item \defn Lobate Scarp - A large scar on the surface of a planet
+    \item Mercury has lots of lobate scarps because Mercury's inside cooled rapidly. This caused the volume inside the planet to contract, creating rifts. It's kinda like how balloons wrinkle when they deflate.
+\end{itemize}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Planet} & \textbf{Orbital Year} & \textbf{Sidereal Day} & \textbf{Solar Day} & \textbf{Subsolar Point} & \textbf{Sublunar Point} \textbf{Axial Tilt}\\
+        \hline
+        Mercury & 88 days & 59 days & 176 days & 427C & -173C & 0.01 deg \\
+        Earth & 365.25 days & 1 day & 1 day & 15C & -15C & 23.5 deg \\
+        \hline
+    \end{tabular}
+
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Planet} & \textbf{Atmosphere Composition} \\
+        \hline
+        Mercury & H, He, O, Na, Mg, K, Ca, H_2O \\
+        Earth & 365.25 days & 1 day & 1 day & 15C & -15C & 23.5 deg \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\end{document}

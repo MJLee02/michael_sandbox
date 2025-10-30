@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}   % advanced math environments
+\usepackage{amssymb}   % math symbols
+\usepackage{amsthm}    % theorem/proof environments (optional, kept for later)
+\usepackage{geometry}  % page margins
+\usepackage{enumitem}  % better lists
+\usepackage{graphicx}  % include images
+\usepackage{hyperref}  % hyperlinks (keep this LAST)
+\usepackage{titlesec}
+\usepackage{multicol} % multiple columns
+\usepackage{enumitem} % better list formatting
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+
+% Title info
+\title{Econ 4310 Notes}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Intro}
+\begin{itemize}
+    \item Roadmap:
+    \begin{multicols}{3} % divide into 3 columns
+        \begin{enumerate}[leftmargin=*]
+            \item Intro
+            \item Neoclassical benchmark
+            \item Deviations from utility maximization
+            \item Expected utility (EU) theory
+            \item EU Deviations
+            \item Dual process theory and bounded rationality
+            \item Rational (in)attention and salience
+            \item Satisficing
+            \item Belief updating
+            \item Overconfidence
+            \item Game theory
+            \item Fairness
+            \item Trust and altruism
+            \item Behavioral game theory
+            \item Identity and norms
+        \end{enumerate}
+    \end{multicols}
+    \item \defn Randomized experiment (RCT) - You randomly assign subjects to \(n\) groups with a control groups
+    \item This is necessary to help separate correlation from causation
+    \item Helpful because on average, the groups are the same. Thus, we can isolate the differentiating variable(s)
+    \item \textbf{Experimental Language}
+    \begin{itemize}
+        \item \defn Treatment Group - Group exposed to the experimental condition
+        \item \defn Control group - Baseline group
+        \item \defn Sample - Group who makes up participants
+        \item \defn Independent variable - Manipulated factor
+        \item \defn Dependent variable - The measure of interest
+        \item \defn Between-participant design - Each participant experiences only one condition
+        \item \defn Within-participant design - Each participant experiences multiple conditions
+        \item \defn Factorial design - Multiple factors are manipulated at once, often in all combinations
+        \item \defn Internal validity - The degree to which the causal effect is valid inside the study
+        \item \defn External validity - How generalizable the results are beyond the Sample
+        \item \defn Confound - Uncontrollable factor(s) that may influence results
+        \item \defn Incentive compatibility - Ensuring participants' best choice aligns with truthful or intended behavior
+    \end{itemize}
+    \item People might not be able to do RCT because economic systems are complex, there are cost/access problems, and ethical concerns
+\end{itemize}
+
+\section{What is Rational?}
+\begin{itemize}
+    \item \defn Rationality - Maximizing one's own self-interest (utility)
+    \item Budget constraint and preferences \(\rightarrow\) optimal choice
+    \item \defn Utility - represents a subject's preferences. When comparing the utility of options, comparisons are binary (not bundled), ordinal, and not comparable across subjects
+    \begin{itemize}
+        \item Utility can be anything (profit, social benefits, reproductive rights, combination of things, etc.)
+    \end{itemize}
+    \item \defn Preference Axioms
+    \begin{itemize}
+        \item Let \(X\) be a set of bundles
+    \end{itemize}
+    \begin{enumerate}
+        \item \textbf{Reflexive} - \(\forall x \in X\), \(x \gtrsim x\) (i.e. each bundle is at least as preferred as itself)
+        \item \textbf{Complete} - \(\forall x, y \in X\), \(x \gtrsim y\) or \(y \gtrsim x\) (or both (\(x \sim y\))) (i.e. every bundle can be compared to every other bundle)
+        \item \textbf{Transitive} - \(\forall x,y,z \in X\), \(x \gtrsim y\) and \(y \gtrsim z \Rightarrow x \gtrsim z\)
+    \end{enumerate}
+
+    \item \defn Complete preference relation - \(X\) is reflexive, complete, and transitive \(\iff\) \(X\) is rationalizable
+    \begin{itemize}
+        \item The following statements are equivalent:
+    \end{itemize}
+    \[
+        (xRy) = (x \gtrsim y) = (R = \{(x,y)\}) 
+    \]
+    \item \thm For finite \(X\), a binary relation, \(R\), on \(X\) has a utility representation \(\iff\) it is a complete preference relation
+    \item Utility Function Assumptions
+    \begin{enumerate}
+        \item Continuous - There are no big jumps in changes
+        \item Monotonic - More is better
+        \item Convex - As the amount of smth increases, the marginal utlity gain decreases
+    \end{enumerate}
+\end{itemize}
+
+\end{document}
