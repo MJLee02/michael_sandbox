@@ -1,18 +1,24 @@
 \documentclass[11pt]{article}
 
 % Common packages
-\usepackage{amsmath}   % advanced math environments
-\usepackage{amssymb}   % math symbols
-\usepackage{amsthm}    % theorem/proof environments (optional, kept for later)
-\usepackage{geometry}  % page margins
-\usepackage{enumitem}  % better lists
-\usepackage{graphicx}  % include images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
 \usepackage{titlesec}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 
-\usepackage{hyperref}  % hyperlinks (keep this LAST)
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% --- Load hyperref late, then bookmark AFTER hyperref ---
+\usepackage[hidelinks]{hyperref}   % load near the end
+\usepackage{bookmark}              % must come after hyperref
 
 % Page setup
 \geometry{margin=0.5in}
@@ -1006,7 +1012,7 @@
             \mathcal{L}_l \\
             \mathcal{L}_s \\
         \end{bmatrix}
-        \begin{bmatrix}
+        = \begin{bmatrix}
             U_c - \lambda \\
             \alpha V_l - \lambda wh(s)(T-s) \\
             \beta J_s - \lambda w (1 - l)[h'(s)(T-s) - h(s)] \\
@@ -1018,13 +1024,135 @@
     \begin{cases}
         c \quad : \quad U_c - \lambda = 0 \\
         l \quad : \quad \alpha V_l - \lambda wh(s)(T-s) = 0 \\
-        s \quad : \quad \beta J_s - \lambda w (1 - l)[h'(s)(T-s) - h(s)] = 0
+        s \quad : \quad \beta J_s + \lambda w (1 - l)[h'(s)(T-s) - h(s)] = 0
     \end{cases}
     \]
-    \item The interpretation of this first-order condition WILL be on the final.
+    \item \textbf{The interpretation of this first-order condition WILL be on the final.}
     \begin{itemize}
-        \item 
+        \item Given \(0 = U_c - \lambda \Rightarrow U_c = \lambda\), we can rewrite the conditions for \(l\) and \(s\) as:
+        \[
+            aV_l - U_cwh(s)(T-s) = 0
+            \quad \text{and} \quad
+            \beta J_s + U_c w (1 - l)[h'(s)(T-s) - h(s)] = 0
+        \]
+        \item or equivalently,
+        \[
+            aV_l = U_c \cdot wh(s)(T-s)
+            \quad \text{and} \quad
+            \beta J_s = -U_c \cdot w (1 - l)[h'(s)(T-s) - h(s)]
+        \]
+        \item Looking at the first equation, we see that:
+        \[
+            aV_l(1-l)
+            = U_c \cdot wh(s)(T-s)(1-l)
+            = U_c \cdot c
+        \]
+        \item If \(U(c) = \ln(c)\), then
+        \[
+            aV_l(1-l) = U_c \cdot c = \frac{1}{c} \cdot c = 1
+        \]
+        \item This implies that if utility is logarithmic, then it is not conditional on \(w\) (as \(c = w - wl\))
+        \item Looking at the second equation, we see that:
+        \[
+            \beta J_s
+            = -U_c \cdot w (1 - l)[h'(s)(T-s) - h(s)] \cdot \left(h(s)(T-s) \cdot \frac{1}{h(s)(T-s)}\right)
+        \]
+        \[
+            \beta J_s = U_c \cdot c \cdot \left[ \frac{1}{T-s} - \frac{h'(s)}{h(s)} \right]
+        \]
+        \item Recall that for a person maximizing income, \(\frac{h'(s)}{h(s)} = \frac{1}{T-s}\). Thus,
+        \[
+            \beta J_s = U_c \cdot c \cdot \left[ \frac{1}{T-s} - \frac{1}{T-s} \right] = 0
+        \]
+        \item This implies either \(\beta = 0\) or \(J_s = 0\)
+        \begin{itemize}
+            \item If \(\beta = 0\), then there is no pecuniary cost to going to school.
+            \item If \(J_s = 0\), then your \(J(s)\) is at a maximum.
+        \end{itemize}
+        \item Additionally, consider the case where \(U(c) = \ln(c)\). Then,
+        \[
+            \beta J_s = \frac{1}{T-s} - \frac{h'(s)}{h(s)}
+        \]
+        \item Hence, it is not conditional on \(w\). \\
+        
+        \item Let \(s_{max}\) be \(s\) that maximizes \(U\). \(s_{max}\) is the \(s\) s.t. \(\frac{1}{T-s} = \frac{h'(s)}{h(s)}\)
+        \item \(s_{max}\) is NOT conditional on \(U_c \cdot c\)
+        \item Questions:
+        \begin{itemize}
+            \item 
+        \end{itemize}
     \end{itemize}
+\end{itemize}
+
+\section{Fertility}
+\begin{itemize}
+    \item Parents need to choose how many children to have. Children cost time, \(\tau\).
+    \item Thus, parents want to maximize the following:
+    \[
+        \max_{c, n} \{U(c) + \alpha V(n)\} \quad \text{s.t.} \quad c = w(1-\tau n)
+    \]
+    \item Note that this equation is very similar to the labor supply problem.
+    \item Doing the first order conditions, we get:
+    \[
+    \mathcal{L} = U(c) + \alpha V(n) - \lambda (c - w(1-\tau n))
+    \]
+    \[
+    \nabla \mathcal{L}
+    = \begin{bmatrix}
+        \mathcal{L}_c \\
+        \mathcal{L}_n \\
+        \mathcal{L}_\lambda
+    \end{bmatrix}
+    = \begin{bmatrix}
+        U_c - \lambda \\
+        \alpha V_n - \lambda w \tau \\
+        \lambda c - w(1-tau n)
+    \end{bmatrix} = \vec{0}
+    \]
+    \item Thus,
+    \[
+    \mathcal{L}_n = 0
+    \quad \Rightarrow \quad
+    \alpha V_n = \lambda w \tau
+    \quad \Rightarrow \quad
+    \alpha V_n (1 - \tau n) = \lambda w \tau (1 - \tau n)
+    \quad \Rightarrow \quad
+    \frac{\alpha}{\tau} V_n (1 - \tau n) = 1
+    \]
+    \item Children also cost goods, \(q\). Thus,
+    \[
+    \max_{c, n} \{U(c) + \alpha V(n)\} \quad \text{s.t.} \quad w = c + qn
+    \]
+    \item Finding the first order conditions, we get:
+    \[
+    \mathcal{L} = U(c) + \alpha V(n) - \lambda (c + qn - w)
+    \]
+    \[
+    \nabla \mathcal{L}
+    = \begin{bmatrix}
+        \mathcal{L}_c \\
+        \mathcal{L}_n \\
+        \mathcal{L}_\lambda
+    \end{bmatrix}
+    = \begin{bmatrix}
+        U_c(c) - \lambda \\
+        \alpha V_n(n) - \lambda q \\
+        \lambda c + qn - w
+    \end{bmatrix} = \vec{0}
+    \]
+    \item Hence,
+    \[
+    \alpha V_n = \lambda q = U_c(w - qn) q
+    \]
+    \item \textbf{Practice Drill:} Be able to explain Slides 5 and 6.
+    \item What if parents want to choose how many children to have and how much human capital to give them?
+    \[
+    \max_{c, n, h}
+    = U(c) + \alpha V(n) + \beta J(h)
+    \quad \text{s.t.} \quad
+    c + qnh = w(1-\tau n)
+    \]
+    \item \textbf{Practice Drill:} Find the first order conditions with \(U(c) = \ln(c)\), \(V(n)= \ln(n)\) and \(J(h) = \ln(h)\). Find  optimal \(c, n, h\).
 \end{itemize}
 
 \newpage

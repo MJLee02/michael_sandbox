@@ -1,0 +1,291 @@
+\documentclass{beamer}
+
+\usepackage{dashbox}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%Information to be included in the title page:
+\title{ECON 4390}
+\author{Subsidized Loans}
+\institute{Michael Lee, Jacob Gelrud, Jack Wimberly, \& Jackson Boyd}
+\date{FL2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Classical Education Model}
+  Recall the classical education model:
+  \[
+    W_0 = aw + \frac{aw}{1+r}
+  \]
+  \[
+    W_1 = -e + \frac{ahw}{1+r}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Government Subsidized Loans}
+  The government often subsidizes college tuition via loans at a rate, \(r_G\), which is less than the market rate, \(r\) (i.e. \(r_G < r\)).
+  \vspace{0.5cm} \\
+  Hence, for students using government subsidized loans:
+  \[
+    W_0 = aw + \frac{aw}{1+r}
+  \]
+  \[
+    W_G = -e + \frac{ahw}{1+r} + e - e \cdot \frac{1+r_G}{1+r}
+  \]
+  \[
+    = \frac{ahw}{1+r}- e \cdot \frac{1+r_G}{1+r}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Government Subsidized Loans}
+  To prefer government subsidized loans, (i.e. \(W_G > W_1\)), what must be true? \\
+  \[
+    W_G
+    = \frac{ahw}{1+r} - e \cdot \frac{1+r_G}{1+r}
+    > W_1 = -e + \frac{ahw}{1+r}
+  \]
+  \[
+    - e \cdot \frac{1+r_G}{1+r}
+    > -e
+  \]
+  \[
+    \boxed{e\cdot \frac{1+r_G}{1+r} < e}
+  \]
+  \[
+    \frac{1+r_G}{1+r}
+    < 1
+  \]
+  \[
+    1+r_G < 1+r
+  \]
+  \[
+    \mbox{\dashbox{$r_G<r$}}
+  \]
+  \begin{itemize}
+    \item which holds as we defined \(r_G < r\)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Government Subsidized Loans}
+  What is the rate of return, \(\rho_{G}(a)\), on the government subsidized loan?
+  \[
+    \rho_{G}(a)
+    = \frac{(awh - aw) - \large(aw + e\cdot \frac{1+r_G}{1+r}\large)}{aw + e\cdot \frac{1+r_G}{1+r}}
+  \]
+  \[
+    \rho_{G}(a)
+    = \frac{aw(h - 1)}{aw + e\cdot \frac{1+r_G}{1+r}} - 1
+  \]
+  \[
+    \rho_{G}(a) + 1
+    = \frac{aw(h - 1)}{aw + e\cdot \frac{1+r_G}{1+r}}
+    = \frac{h - 1}{1 + \frac{e}{aw}\cdot \frac{1+r_G}{1+r}}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Government Subsidized Loans}
+  Statics for subsidized \& non-subsidized loans:
+  \[
+    \rho_{G}(a) + 1 = \frac{h - 1}{1 + \frac{e}{aw}\cdot  \frac{1+r_G}{1+r}}
+    \quad \text{and} \quad
+    \rho(a) + 1 = \frac{h - 1}{1 + \frac{e}{aw}}
+  \]
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c|c|c}
+      & \(h \uparrow\) & \(e \uparrow\) & \(r \uparrow\) & \(r_G \uparrow\) & \(w \uparrow\) & \(a \uparrow\) \\
+      \hline
+      \(\rho_{G}(a)\) & \(\uparrow\) & \(\downarrow\) & \(\uparrow\) & \(\downarrow\) & \(\uparrow\) & \(\uparrow\) \\
+      \hline
+      \(\rho(a)\) & \(\uparrow\) & \(\downarrow\) & --- & --- & \(\uparrow\) & \(\uparrow\) \\
+      \hline
+    \end{tabular}   
+  \end{center}
+  \begin{itemize}
+    \item Why is \(\rho_{G}(a)\) conditional on \(r_G\) and \(r\)?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{How do we fund government subsidized loans?}
+  \begin{itemize}
+    \item Taxation
+    \item Borrowing (i.e. deficit spending)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Funding: Taxation}
+  Suppose the government funded subsidized loans via a proportional tax, \(\tau\), on college-educated workers.
+  \vspace{0.5cm} \\
+  \textit{Without tax:}
+  \[
+    W_G = -e \cdot \frac{1+r_G}{1+r} + \frac{ahw}{1+r}
+  \]
+  \textit{With tax:}
+  \[
+      W_G = -e \cdot \frac{1+r_G}{1+r} + \frac{ahw\textcolor{red}{(1-\tau)}}{1+r}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Funding: Taxation}
+  If \(W_G(a^*) = W_0(a^*)\), then \(a^* = ???\)
+  \[
+  W_0(a^*)
+  = a^*w + \frac{a^*w}{1+r}
+  = W_G(a^*)
+  = -e \cdot \frac{1+r_G}{1+r} + \frac{a^*hw(1-\tau)}{1+r}
+  \]
+  \[
+    \textcolor{red}{(1+r) \cdot} a^*w \left( 1 + \frac{1}{1+r} - \frac{h(1-\tau)}{1+r} \right)
+  = - e \cdot \frac{1+r_G}{1+r} \textcolor{red}{\cdot (1+r)}
+  \]
+  \[
+    a^*w \left( (1+r) + (1) - [h(1-\tau)] \right)
+    = - e \cdot (1+r_G)
+  \]
+  \[
+    \boxed{a^* = \frac{e}{w} \cdot \frac{1+r_G}{(h(1-\tau)-1) - (1 + r)}}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Funding: Taxation}
+  What is the rate of return, \(\rho_{G}(a)\), on the government subsidized loan?
+  \[
+    \rho_{G}(a)
+    = \frac{(awh - aw) - \large(aw + e\cdot \frac{1+r_G}{1+r}\large)}{aw + e\cdot \frac{1+r_G}{1+r}}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Funding: Taxation}
+  So what is the government's budget, \(B\), for this program?
+  \begin{itemize}
+    \item \textbf{Assumption:} Only funded by proportional tax on college-educated workers
+    \item \textbf{Recall:} \(a \sim U(a_m, a_M)\) (i.e. \(\min\{a\} = a_m\) and \(\max\{a\} = a_M\))
+  \end{itemize}
+  \[
+  B = \int_{a^*}^{a_M} \frac{e}{a_M - a_m} da
+  \quad \textcolor{red}{\leftarrow \quad \text{total program cost}}
+  \]
+  \[
+  B = \int_{a^*}^{a_M} \frac{\tau awh}{a_M - a_m} da
+  \quad \textcolor{red}{\leftarrow \quad \text{total revenue for program}}
+  \]
+  \[
+  \text{Total Cost} = \text{Total Revenue}
+  \]
+  \[
+    B
+    = \int_{a^*}^{a_M} \frac{e}{a_M - a_m} da
+    = \int_{a^*}^{a_M} \frac{\tau awh}{a_M - a_m} da
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Funding: Taxation}
+  \[
+    B
+    = \int_{a^*}^{a_M} \frac{e}{a_M - a_m} da
+    = \int_{a^*}^{a_M} \frac{\tau awh}{a_M - a_m} da
+  \]
+  \[
+  \frac{e}{a_M - a_m} \int_{a^*}^{a_M} 1 \text{ } da
+  = \frac{\tau wh}{a_M - a_m} \int_{a^*}^{a_M} a \text{ } da
+  \]
+  \[
+  \left( \frac{e}{a_M - a_m} \right) \left( a \text{ } \bigg|_{a^*}^{a_M} \right)
+  = \left( \frac{\tau wh}{a_M - a_m} \right) \left( \frac{a^2}{2} \text{ } \bigg|_{a^*}^{a_M} \right)
+  \]
+  \[
+  \frac{e(a_M - a^*)}{a_M - a_m}
+  = \left( \frac{\tau wh}{a_M - a_m} \right) \left[ \frac{(a_M)^2}{2} - \frac{(a^*)^2}{2} \right]
+  \]
+  \[
+  e(a_M - a^*) = \frac{\tau wh}{2} \cdot \left[ (a_M)^2 - (a^*)^2 \right]
+  \]
+  \[
+  e(a_M - a^*) = \frac{\tau wh}{2} \cdot (a_M - a^*) \cdot (a_M + a^*)
+  \]
+  \[
+  e = \frac{\tau wh}{2} \cdot (a_M + a^*)
+  \Rightarrow
+  \boxed{a^* = \frac{e}{w} \cdot \frac{2}{\tau h} - a_M}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Funding: Taxation}
+
+  % Intersection of 1/x and -1/x + 2.5:
+  % 1/x = -1/x + 2.5  =>  2/x = 2.5  =>  x = 0.8, y = 1/0.8 = 1.25
+  \pgfmathsetmacro{\xi}{0.4}
+  \pgfmathsetmacro{\yi}{1.25}
+
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=12cm, height=7cm,
+      xlabel={$\tau$}, ylabel={$a^{*}$},
+      xmin=0, xmax=1.5, ymin=0, ymax=2.5,
+      grid=none,
+      xtick=\empty, ytick=\empty,
+      tick style={draw=none},
+      axis lines=middle,
+      samples=400,
+      unbounded coords=jump,      % skip infinities instead of erroring
+    ]
+      % Avoid x=0 to prevent 1/0
+      \addplot[name path=inc, thick, blue, domain=0:1.5] {1/(x+0.4)};
+
+      \addplot[name path=dec, thick, orange, domain=0:1.5] {-1/(x+0.4) + 2.5};
+
+      % Intersection marker & label
+      \coordinate (I) at (axis cs:\xi,\yi);
+      \fill (I) circle (2pt);
+      \node[anchor = west] at (I) {$(\tau_0, a^*_0)$};
+    \end{axis}
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+  \frametitle{SCRAPPED SLIDES}
+  Content we don't want to cover goes after here.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Government Subsidized Loans}
+  \(W_0(a^*) = W_G(a^*) \Rightarrow a^* = ???\)
+
+  \[
+    W_0(a^*)
+    = a^*w + \frac{a^*w}{1+r}
+    = W_G(a^*)
+    = \frac{a^*hw}{1+r} - e \cdot \frac{1+r_G}{1+r}
+  \]
+  \[
+    a^*w \left( 1 + \frac{1}{1+r} - \frac{h}{1+r} \right)
+    = - e \cdot \frac{1+r_G}{1+r}
+  \]
+  \[
+    a^*w \left( \frac{(1+r) - (h-1)}{1+r} \right)
+    = - e \cdot \frac{1+r_G}{1+r}
+  \]
+  \[
+    \boxed{a^* = \frac{e}{w} \cdot \frac{1+r_G}{(h-1) - (1 + r)}}
+  \]
+\end{frame}
+
+\end{document}
