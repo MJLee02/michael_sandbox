@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<Product_Bundle xmlns="http://pds.nasa.gov/pds4/pds/v1"
+ xmlns:pds="http://pds.nasa.gov/pds4/pds/v1"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.xsd">
+    <Identification_Area>
+        <logical_identifier>urn:nasa:pds:lunar_crater_database_robbins_2018</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Lunar_Crater_Database_Robbins_2018_bundle_XML</title>
+        <information_model_version>1.11.0.0</information_model_version>
+        <product_class>Product_Bundle</product_class>
+        <Citation_Information>
+            <author_list>Robbins, Stuart J.</author_list>
+            <publication_year>2016</publication_year>
+            <description>Archive Bundle for Lunar Crater Database, Robbins, 2018</description>
+        </Citation_Information>
+    </Identification_Area>
+    <Context_Area>
+        <Time_Coordinates>
+            <start_date_time>2003-01-01T12:00:00Z</start_date_time>
+            <stop_date_time>2003-01-01T12:01:00Z</stop_date_time>
+        </Time_Coordinates>
+        <Primary_Result_Summary>
+            <purpose>Science</purpose>
+            <processing_level>Calibrated</processing_level>
+            <Science_Facets>
+                <wavelength_range>Visible</wavelength_range>
+                <domain>Surface</domain>
+                <discipline_name>Imaging</discipline_name>
+            </Science_Facets>
+        </Primary_Result_Summary>
+        <Investigation_Area>
+            <name>Lunar Reconnaissance Orbiter</name>
+            <type>Mission</type>
+            <Internal_Reference>
+                <lidvid_reference>urn:nasa:pds:context:investigation:mission.lro::1.0</lidvid_reference>
+                <reference_type>bundle_to_investigation</reference_type>
+            </Internal_Reference>
+        </Investigation_Area>
+        <Observing_System>
+            <name>Observing System for LROC and LOLA data</name>
+            <Observing_System_Component>
+                <name>Lunar Reconnaissance Orbiter</name>
+                <type>Spacecraft</type>
+                <description>The instrument host for this observing system was the Lunar Reconnaissance Orbiter (LRO) spacecraft</description>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.lro</lid_reference>
+                    <reference_type>is_instrument_host</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>Lunar Reconnaissance Orbiter Camera</name>
+                <type>Instrument</type>
+                <description>The instrument for this observing component was the Lunar Reconnaissance Orbiter Camera (LROC)</description>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument:lroc.lro</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>Lunar Orbiter Laser Altimeter</name>
+                <type>Instrument</type>
+                <description>The instrument for this observing component was the Lunar Orbiter Laser Altimeter (LOLA)</description>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument:lola.lro</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>Kaguya Orbiter</name>
+                <type>Spacecraft</type>
+                <description>The instrument host for this observing system was the Kaguya spacecraft</description>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.kaguya</lid_reference>
+                    <reference_type>is_instrument_host</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>TC</name>
+                <type>Instrument</type>
+                <description>The instrument for this observing component was the TC Camera</description>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument:tc.kaguya</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>SELENE</name>
+                <type>Instrument</type>
+                <description>The instrument for this observing component was the SELENE camera</description>
+                <Internal_Reference>
+                    <lid_reference>urn:nasa:pds:context:instrument:selene.kaguya</lid_reference>
+                    <reference_type>is_instrument</reference_type>
+                </Internal_Reference>
+            </Observing_System_Component>
+        </Observing_System>
+        <Target_Identification>
+            <name>Moon</name>
+            <type>Planet</type>
+            <Internal_Reference>
+                <lidvid_reference>urn:nasa:pds:context:target:planet.moon::1.0</lidvid_reference>
+                <reference_type>data_to_target</reference_type>
+            </Internal_Reference>
+        </Target_Identification>
+    </Context_Area>
+    <Reference_List>
+        <Internal_Reference>
+            <lid_reference>urn:nasa:pds:context:node:node.imaging</lid_reference>
+            <reference_type>bundle_to_associate</reference_type>
+        </Internal_Reference>
+    </Reference_List>
+    <Bundle>
+        <bundle_type>Archive</bundle_type>
+    </Bundle>
+    <Bundle_Member_Entry>
+        <lid_reference>urn:nasa:pds:mars_cave_catalog:data</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_data_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lid_reference>urn:nasa:pds:mars_cave_catalog:document</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_document_collection</reference_type>
+    </Bundle_Member_Entry>
+    <Bundle_Member_Entry>
+        <lid_reference>urn:nasa:pds:mars_cave_catalog:miscellaneous</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_document_collection</reference_type>
+    </Bundle_Member_Entry>
+<Bundle_Member_Entry>
+        <lid_reference>urn:nasa:pds:mars_cave_catalog:xml_schema</lid_reference>
+        <member_status>Primary</member_status>
+        <reference_type>bundle_has_document_collection</reference_type>
+    </Bundle_Member_Entry>
+</Product_Bundle>

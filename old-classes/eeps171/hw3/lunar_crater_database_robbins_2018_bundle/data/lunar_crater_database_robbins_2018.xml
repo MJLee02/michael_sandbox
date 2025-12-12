@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:pds="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.xsd http://pds.nasa.gov/pds4/cart/v1 https://raw.githubusercontent.com/thareUSGS/ldd-cart/master/build/1.B.0.0/PDS4_CART_1B00.xsd" xmlns:cart="http://pds.nasa.gov/pds4/cart/v1">
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:robbins_lunar_crater_database_2018:data:robbins_crater_database</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>Robbins Lunar Crater Database</title>
+    <information_model_version>1.11.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+    <Citation_Information>
+      <publication_year>2018</publication_year>
+      <doi>https://doi.org/10.1029/2018JE005592</doi>
+      <description>A New Global Database of Lunar Impact Craters >1–2 km: 1. Crater Locations and Sizes, Comparisons with Published Databases, and Global Analysis</description>
+    </Citation_Information>
+  </Identification_Area>
+  <Observation_Area>
+    <comment>Location, of lunar impact crater as digitized using LROC images</comment>
+    <Time_Coordinates>
+      <start_date_time>2018-08-15T12:00:00Z</start_date_time>
+      <stop_date_time>2018-08-15T12:01:00Z</stop_date_time>
+    </Time_Coordinates>
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Derived</processing_level>
+      <description>A table of lunar impact crater locations and descriptions          
+            </description>
+    </Primary_Result_Summary>
+    <Investigation_Area>
+      <name>Lunar Reconnaissance Orbiter</name>
+      <type>Mission</type>
+      <Internal_Reference>
+        <lidvid_reference>urn:nasa:pds:context:investigation:mission.lro::1.0</lidvid_reference>
+        <reference_type>data_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <name>Observing System for LROC and LOLA data</name>
+      <Observing_System_Component>
+        <name>Lunar Reconnaissance Orbiter</name>
+        <type>Spacecraft</type>
+        <description>The instrument host for this observing system was the Lunar Reconnaissance Orbiter (LRO) spacecraft</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.lro</lid_reference>
+          <reference_type>is_instrument_host</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Lunar Reconnaissance Orbiter Camera</name>
+        <type>Instrument</type>
+        <description>The instrument for this observing component was the Lunar Reconnaissance Orbiter Camera (LROC)</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:lroc.lro</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Lunar Orbiter Laser Altimeter</name>
+        <type>Instrument</type>
+        <description>The instrument for this observing component was the Lunar Orbiter Laser Altimeter (LOLA)</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:lola.lro</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Kaguya Orbiter</name>
+        <type>Spacecraft</type>
+        <description>The instrument host for this observing system was the Kaguya spacecraft</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.kaguya</lid_reference>
+          <reference_type>is_instrument_host</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>TC</name>
+        <type>Instrument</type>
+        <description>The instrument for this observing component was the TC Camera</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:tc.kaguya</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>SELENE</name>
+        <type>Instrument</type>
+        <description>The instrument for this observing component was the SELENE camera</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:selene.kaguya</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+    </Observing_System>
+    <Target_Identification>
+      <name>Moon</name>
+      <type>Planet</type>
+      <Internal_Reference>
+        <lidvid_reference>urn:nasa:pds:context:target:planet.moon::1.0</lidvid_reference>
+        <reference_type>data_to_target</reference_type>
+      </Internal_Reference>
+    </Target_Identification>
+    <Discipline_Area>
+      <cart:Cartography>
+        <Local_Internal_Reference>
+          <local_identifier_reference>lunar_crater_database_2018</local_identifier_reference>
+          <local_reference_type>cartography_parameters_to_image_object</local_reference_type>
+        </Local_Internal_Reference>
+        <cart:Spatial_Domain>
+          <cart:Bounding_Coordinates>
+            <cart:west_bounding_coordinate unit="deg">0.000517266999999999966</cart:west_bounding_coordinate>
+            <cart:east_bounding_coordinate unit="deg">360</cart:east_bounding_coordinate>
+            <cart:north_bounding_coordinate unit="deg">89.9735000000000014</cart:north_bounding_coordinate>
+            <cart:south_bounding_coordinate unit="deg">-89.8478999999999957</cart:south_bounding_coordinate>
+          </cart:Bounding_Coordinates>
+        </cart:Spatial_Domain>
+        <cart:Spatial_Reference_Information>
+          <cart:Horizontal_Coordinate_System_Definition>
+            <cart:Geographic />
+            <cart:Geodetic_Model>
+              <cart:latitude_type>Planetocentric</cart:latitude_type>
+              <cart:spheroid_name>Moon_2000</cart:spheroid_name>
+              <cart:semi_major_radius unit="m">1737400</cart:semi_major_radius>
+              <cart:semi_minor_radius unit="m">1737400</cart:semi_minor_radius>
+              <cart:polar_radius unit="m">1737400</cart:polar_radius>
+              <cart:longitude_direction>Positive East</cart:longitude_direction>
+            </cart:Geodetic_Model>
+          </cart:Horizontal_Coordinate_System_Definition>
+        </cart:Spatial_Reference_Information>
+      </cart:Cartography>
+    </Discipline_Area>
+  </Observation_Area>
+  <Reference_List>
+    <Internal_Reference>
+      <lidvid_reference>urn:nasa:pds:context:investigation:mission.lro::1.0</lidvid_reference>
+      <reference_type>data_to_associate</reference_type>
+    </Internal_Reference>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:context:instrument_host:spacecraft.lro</lid_reference>
+      <reference_type>data_to_associate</reference_type>
+    </Internal_Reference>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:context:instrument:lroc.lro</lid_reference>
+      <reference_type>data_to_associate</reference_type>
+    </Internal_Reference>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:context:instrument:lola.lro</lid_reference>
+      <reference_type>data_to_associate</reference_type>
+    </Internal_Reference>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:context:target:planet.moon</lid_reference>
+      <reference_type>data_to_associate</reference_type>
+    </Internal_Reference>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:context:node:node.imaging</lid_reference>
+      <reference_type>data_to_associate</reference_type>
+    </Internal_Reference>
+  </Reference_List>
+  <File_Area_Observational>
+    <File>
+      <file_name>lunar_crater_database_robbins_2018.csv</file_name>
+      <md5_checksum>6bb5e354a5495dc09732b497dd807ddb</md5_checksum>
+    </File>
+    <Table_Delimited>
+      <local_identifier>lunar_crater_database_2018</local_identifier>
+      <offset unit="byte">361</offset>
+      <parsing_standard_id>PDS DSV 1</parsing_standard_id>
+      <records>1296796</records>
+      <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+      <field_delimiter>Comma</field_delimiter>
+      <Record_Delimited>
+        <fields>21</fields>
+        <groups>0</groups>
+        <Field_Delimited>
+          <name>CRATER_ID</name>
+          <field_number>1</field_number>
+          <data_type>UTF8_String</data_type>
+          <maximum_field_length unit="byte">12</maximum_field_length>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>LAT_CIRC_IMG</name>
+          <field_number>2</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>LON_CIRC_IMG</name>
+          <field_number>3</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>LAT_ELLI_IMG</name>
+          <field_number>4</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>LON_ELLI_IMG</name>
+          <field_number>5</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_CIRC_IMG</name>
+          <field_number>6</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_CIRC_SD_IMG</name>
+          <field_number>7</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_MAJOR_IMG</name>
+          <field_number>8</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_MINOR_IMG</name>
+          <field_number>9</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_ECCEN_IMG</name>
+          <field_number>10</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_ELLIP_IMG</name>
+          <field_number>11</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_ANGLE_IMG</name>
+          <field_number>12</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>LAT_ELLI_SD_IMG</name>
+          <field_number>13</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>LON_ELLI_SD_IMG</name>
+          <field_number>14</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_MAJOR_SD_IMG</name>
+          <field_number>15</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_MINOR_SD_IMG</name>
+          <field_number>16</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_ANGLE_SD_IMG</name>
+          <field_number>17</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_ECCEN_SD_IMG</name>
+          <field_number>18</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>DIAM_ELLI_ELLIP_SD_IMG</name>
+          <field_number>19</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>ARC_IMG</name>
+          <field_number>20</field_number>
+          <data_type>ASCII_Real</data_type>
+        </Field_Delimited>
+        <Field_Delimited>
+          <name>PTS_RIM_IMG</name>
+          <field_number>21</field_number>
+          <data_type>ASCII_String</data_type>
+        </Field_Delimited>
+      </Record_Delimited>
+    </Table_Delimited>
+  </File_Area_Observational>
+</Product_Observational>
