@@ -1,0 +1,256 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}   % advanced math environments
+\usepackage{amssymb}   % math symbols
+\usepackage{amsthm}    % theorem/proof environments (optional, kept for later)
+\usepackage{geometry}  % page margins
+\usepackage{enumitem}  % better lists
+\usepackage{graphicx}  % include images
+\usepackage{titlesec}
+\usepackage{hyperref}  % hyperlinks (keep this LAST)
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta,positioning}
+\pgfplotsset{compat=1.18}
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+
+% Title info
+\title{ECON 4310 HW5}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}[label=\textbf{(\arabic*)}, leftmargin=*]
+    \item \textbf{Incentives in Experiemnts}
+    
+    \textit{Suppose you are designing an experiment and wish to understand a participant's valuation
+    a 50/50 lottery on the outcomes \$10 and \$100. Describe a set of incentivized questions that
+    you could ask in order to elicit the participant's valuation. What will the instructions to the
+    participant be? How many questions will you ask? How will you pay them?}
+
+    \textit{Hint: As you've seen in lab, the easiest way to elicit the valuation is to present a set of binary
+    choices to make, where one item in each choice is the alternative in question, and you vary the
+    other item. For example, if you offer a choice between (i) the alternative, and (ii) a certain
+    dollar amount of \$50, and the participant chooses the \$50, you can infer that they value the
+    alternative less than \$50.}
+
+    \textbf{Set of incentivized questions.} I would ask the participant a set of questions where they have two options: (i) a 50/50 lottery on the outcomes \$10 and \$100, and (ii) a sure dollar amount, \(\$x_i\) , that varies between questions:
+    \[
+    \begin{array}{c|c|c}
+        \text{Question} & \text{Option 1} & \text{Option 2} \\
+        \hline
+        Q1 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$10 \\
+        Q2 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$20 \\
+        Q3 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$30 \\
+        Q4 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$40 \\
+        Q5 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$50 \\
+        Q6 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$60 \\
+        Q7 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$70 \\
+        Q8 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$80 \\
+        Q9 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$90 \\
+        Q10 & 50/50\text{ lottery on \$10\text{ and }\$100} & \$100 \\
+    \end{array}
+    \]
+
+    \textbf{Instrustions/Payment.} I would tell the participant they will make 10 choices. They can choose between a lottery that has a 50\% chance of winning \$10 and a 50\% chance of winning \$100, OR a sure dollar amount, \(\$x_i\). At the end of the experiment, one round will randomly be selected and they will get the payoff for that round.
+
+    \item \textbf{Class lottery.} \textit{As you know, the points you accumulated in the lab sessions during the
+    semester will be used to run a lottery for a \$100 gift card. Suppose that at the end of the
+    semester, the total accumulated points by the entire class, including you, is 25,000. Suppose
+    your total is 600, and suppose I were to offer you a bonus of 70 points at the end of the
+    semester. How much, in dollar terms, is the bonus worth?}
+
+    Assuming the 70 point bonus is given to me and only me, the new total points is 25,700. Thus, the value per point is:
+    \[
+    a = \frac{\$100}{25,070} = \approx 0.00398 \$/point
+    \]
+    Thus, the value of the 70 point bonus is:
+    \[
+    70 \cdot a \approx \$0.28
+    \]
+
+    \newpage
+    \item \textbf{QRE.}
+    
+    \[
+    p(x_j) = \frac{\exp(\lambda u (x_j))}{\sum_{x_k \in A}\exp(\lambda u (x_k))}
+    \quad (\text{where }\lambda = 1.5)
+    \]
+
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textbf{ }
+        \[
+        p_2^4(T)
+        = \frac{\exp(1.5 \cdot 3.2)}{\exp(1.5 \cdot 3.2) + \exp(1.5 \cdot 1.6)}
+        \approx 0.917
+        \]
+        
+        \item \textbf{ }
+        \[
+            u_1^3(P)
+            = p_2^4(T) \cdot 0.80 + (1 - p_2^4(T)) \cdot 6.40
+            = 0.917 \cdot 0.80 + (1 - 0.917) \cdot 6.40
+            \approx 1.266
+        \]
+
+        \[
+            p_1^3(T)
+            = \frac{\exp(1.5 \cdot 1.60)}{\exp(1.5 \cdot 1.60) + \exp(1.5 \cdot 1.266)}
+            \approx 0.623
+        \]
+        
+        \item \textbf{ }
+        \[
+            u_2^2(P)
+            = p_1^3(T) \cdot 0.40 + (1 - p_1^3(T))(p_2^4(T) \cdot 3.20 + (1 - p_2^4(T)) \cdot 1.60)
+        \]
+        \[
+            = 0.623 \cdot 0.40 + (1 - 0.623) \cdot (0.917 \cdot 3.20 + (1 - 0.917) \cdot 1.60)
+            \approx 1.406
+        \]
+    
+        \[
+            p_2^2(T)
+            = \frac{\exp(1.5 \cdot 0.80)}{\exp(1.5 \cdot 0.80) + \exp(1.5 \cdot 1.406)}
+            \approx 0.287
+        \]
+        
+        \item \textbf{ }
+        
+        \[
+        u_1^1(P)
+        = p_2^2(T) \cdot 0.20 + (1 - p_2^2(T))(p_1^3(T) \cdot 1.60 + (1 - p_1^3(T))(p_2^4(T) \cdot 0.80 + (1 - p_2^4(T)) \cdot 6.40))
+        \]
+        \[
+        = 0.287 \cdot 0.20 + (1 - 0.287)(0.623 \cdot 1.60 + (1 - 0.623)(0.917 \cdot 0.8 + (1 - 0.917) \cdot 6.40))
+        \approx 1.108
+        \]
+
+        \[
+            p_1^2(T)
+            = \frac{\exp(1.5 \cdot 0.40)}{\exp(1.5 \cdot 0.40) + \exp(1.5 \cdot 1.108)}
+            \approx 0.257
+        \]
+
+    \end{enumerate}
+
+    \item \textbf{k-level Thinking}
+    
+    \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=*]
+        \item \textbf{ }
+        At level 0, players play uniformly, so \(p^t(0) = 0.5\) at all decision nodes.
+        
+        \item \textbf{ }
+        At level 1, we assume our opponent is precisely type 0, so their probability of playing T is \(p^t(1) = 0.5\) at all decision nodes. We will start at Node 4 and go backwards. Let the utility of playing \(a_i\) in round \(j\) be \(u_j(a_i)\) and the utility of any given round be \(u_j\) \\
+
+        \textbf{Node 4:}
+        \[
+            u_4(T) = 3.20 > u_4(P) = 1.60 \quad \Rightarrow \quad \text{Play T}
+        \]
+        Hence,
+        \[
+        p^4(1) = 1
+        \]
+
+        \textbf{Node 3:}
+        \[
+        u_3(T)
+        = 1.60
+        < u_3(P)
+        = p_4(T) \cdot u_4(T) + p_4(P) \cdot u_4(P)
+        = 0.5 \cdot 0.80 + 0.5 \cdot 6.40
+        = 3.60
+        \quad \Rightarrow \quad \text{Play P}
+        \]
+        Hence,
+        \[
+        p^3(1) = 0
+        \]
+
+        \textbf{Node 2:}
+        \[
+        u_2(T)
+        = 0.80
+        < u_2(P)
+        = p_3(T) \cdot u_3(T) + p_3(P) \cdot u_3(P)
+        = 0.5 \cdot 0.40 + 0.5 \cdot 3.20
+        = 1.80
+        \quad \Rightarrow \quad \text{Play P}
+        \]
+        Hence,
+        \[
+        p^2(1) = 0
+        \]
+        
+        \textbf{Node 1:}
+        \[
+        u_1(T)
+        = 0.40
+        < u_1(P)
+        = p_2(T) \cdot u_2(T) + p_2(P) \cdot u_2(P)
+        = 0.5 \cdot 0.20 + 0.5 \cdot 1.80
+        = 1.00
+        \quad \Rightarrow \quad \text{Play P}
+        \]
+        Hence,
+        \[
+        p^1(1) = 0
+        \]
+
+        \item \textbf{ }
+        At level 2, we assume our opponent is precisely type 1, so they will play \(T\) in Node 4 and \(P\) in all other nodes. Again, we will start at Node 4 and go backwards.
+
+        \textbf{Node 4:}
+        \[
+            u_4(T) = 3.20 > u_4(P) = 1.60 \quad \Rightarrow \quad \text{Play T}
+        \]
+        Hence,
+        \[
+        p^4(2) = 1
+        \]
+
+        \textbf{Node 3:}
+        \[
+        u_3(T) = 1.60 > u_3(P) = p^4(1) \cdot u_4(T) + (1 - p^4(1)) \cdot u_4(P) = 1 \cdot 0.80 = 0.80 \quad \Rightarrow \quad \text{Play T}
+        \]
+        Hence,
+        \[
+        p^3(2) = 1
+        \]
+
+        \textbf{Node 2:}
+        \[
+        u_2(T) = 0.80 < u_2(P) = p^3(1) \cdot 0.4 + (1 - p^3(1)) \cdot u_3(P) = 0 \cdot 0.40 + 1 \cdot 3.20 = 3.20 \quad \Rightarrow \quad \text{Play P}
+        \]
+        Hence,
+        \[
+        p^2(2) = 0
+        \]
+
+        \textbf{Node 1:}
+        \[
+        u_1(T) = 0.40 < u_1(P) = p^2(1) \cdot 0.20 + (1 - p^2(1)) \cdot u_3(T) = 0 \cdot 0.20 + 1 \cdot 1.60 = 1.60 \quad \Rightarrow \quad \text{Play P}
+        \]
+        Hence,
+        \[
+        p^1(2) = 0
+        \]
+
+    \end{enumerate}
+        
+\end{enumerate}
+
+\end{document}  
