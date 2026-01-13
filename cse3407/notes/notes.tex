@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% --- Load hyperref late, then bookmark AFTER hyperref ---
+\usepackage[hidelinks]{hyperref}   % load near the end
+\usepackage{bookmark}              % must come after hyperref
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+
+% Title info
+\title{CSE 3407 Notes - Analysis of Algorithms}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Syllabus / How to Class Works}
+
+\begin{itemize}
+    \item Prof. Kunal Agrawal
+    \item Need to watch a video lecture \textit{BEFORE} class
+    \item Quizzes every Monday morning based on the video lecture. Unlimited attempts
+    \item No lecture notes :(
+    \item Monday is lecture, Wednesday is recitation (i.e. in-class problems)
+    \item Miss recitations \(\Rightarrow\) must make up during OH within 6 days
+    \item HW is 2 problems. HW is graded for completion. Graded out of 1.
+\end{itemize}
+
+\section{Greedy Algorithms}
+\subsection{What is a Greedy Algorithm?}
+\begin{itemize}
+    \item The `correct' greedy algorithm is the solution that finds the solution in the shortest amount of time.
+    \item A `greedy' choice (GC) is a choice you make that is the best choice at the current time. This leads to a smaller subproblem that is the same as the previous problem
+    \item Follow this 3-step proof strategy (basically induction):
+    \begin{enumerate}
+        \item \defn Greedy Choice Property (GCP) - Some optimal solution is the `correct' greedy choice. Need to prove that some optimal solution will make your greedy choice. This is where you make an `Exchange Argument.'
+        \item \defn Inductive Substructure (IS) -  After first choice, you get a smaller isntance of the same problem.
+        \item \defn Optimal Substructure (OS) - IF we solve the smaller instance optimally and combine it with GC, we get an optimal solution overall.
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Ex. Minimum Spanning Tree (MST) Generation}
+\begin{itemize}
+    \item Suppose we have a connected undirected graph, \(G = (V, E)\) where \(|V| = n\) and \(|E| = m\)
+    \item Each edge, \(e \in E\), has a unique weight, \(w(e) \in \mathbb{R}_{>0}\)
+    \item GOAL: Select a set of edges, \(T\), s.t.
+    \begin{enumerate}
+        \item The graph is connected
+        \item \(|T| = \sum_{e \in T} w(e)\) is minimized
+    \end{enumerate}
+\end{itemize}
+
+\begin{proof}
+    \textbf{Claim 1:} \(T\) is a tree.
+    Suppose \(T\) is not a tree. Thus, there is a cycle in \(T\). However, if \(T\) contains a cycle and we remove an edge, \(e\), we get a tree, \(T'\) s.t. \(|T'| < |T|\).
+    \[\rightarrow \leftarrow\]
+
+    \noindent \textbf{Claim 2:} Find the minimum spanning tree (MST) of \(G\).
+
+    \noindent \textbf{Greedy Choice} Pick \(e \in E\) with endpoints (\(u, v\)) s.t. \(\min\{w(e)\}\).
+
+    Consider some MST, \(T^* = (U^*, E^*)\). There are two cases: 
+    \begin{enumerate}
+        \item \textbf{Case 1:} \(e \in T^*\), so \(u,v \in V^*\)
+        \item \textbf{Case 2:} \(e \notin T^*\). Let \(w(z,w)\) have endpoints \((z,w)\) and \(w(z, w) > w(u,v)\).
+        \[
+        \bar{T} = T^* + (u,v) - (z,w) \Rightarrow w(\bar{T}) = w(T^*) - w(z, w) + w(u,v) \leq w(T^*)
+        \]
+        Hence, \(\bar{T}\) is an MST containing \((u,v)\).
+    \end{enumerate}
+
+    \noindent \textbf{Inductive Substructure:} After first choice, we get a smaller instance of the same problem. Just find the edge with the smallest weight s.t. at least one of its endpoints are not in the tree already. In other words,
+    \[
+    ST(G) = ST(G') + (u,v)
+    \]
+
+    \noindent \textbf{Optimal Substructure:} This results in a spanning tree because \(ST(G')\) is a tree, so \(\exists\) a path, \(p\), connected all \(a, b \in V(ST(G'))\). There is also a path between all \(a \in V(ST(G'))\) and \(v\) as the path is simply \(P: a \rightarrow u \rightarrow v\). Hence, \(ST(G)\) is a tree.
+\end{proof}
+\begin{itemize}
+    \item The greedy algorithm for MST generation is called \textbf{Kruskal's algorithm}, which does the following:
+    \begin{enumerate}
+        \item Sort the edges by weight, \(w(e)\) \(\leftarrow O(m \log(n))\)
+        \item Picks edges with smallest weight into the tree, \(T\). (O(1))
+        \item Removes all edges s.t. adding them creates a cycle.
+        \item Repeat
+    \end{enumerate}
+    \item Total runtime is \(O(m \log(n))\)
+\end{itemize}
+\end{document} 

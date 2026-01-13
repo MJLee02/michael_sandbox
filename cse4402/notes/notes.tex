@@ -1,0 +1,121 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% --- Load hyperref late, then bookmark AFTER hyperref ---
+\usepackage[hidelinks]{hyperref}   % load near the end
+\usepackage{bookmark}              % must come after hyperref
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+\newcommand{\Gen}{\textsf{Gen}}
+\newcommand{\Enc}{\textsf{Enc}}
+\newcommand{\Dec}{\textsf{Dec}}
+
+% Title info
+\title{CSE 4402 Notes - Cryptography}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Syllabus / How to Class Works}
+\begin{itemize}
+    \item 6 homeworks. They are assigned whenever he feels like it.
+    \item This class's content is different from MATH 4350
+\end{itemize}
+
+\section{Introduction}
+\subsection{The Communication Problem}
+\begin{itemize}
+    \item Typically, we have two characters who are trying to communicate a message (\(m\)) with each other, Alice (\(A\)) and Bob (\(B\)).
+    \item However, there is Eve (\(E\)) who is trying to eavesdrop on the communication between \(A\) and \(B\).
+    \item We convert \(m\) to a crypt (\(c\)) via a key (\(k\)), send it to \(B\), and then \(B\) decrypts it to get \(m\).
+    \item We assume that \(E\) can intercept the crypt (\(c\)) and try to build \(c\) s.t. she cannot decrypt it. \\
+    \item \defn Kerchoff's Principle: Assume that \(E\) knows how our system works but doesn't know \(k\).
+\end{itemize}
+
+\subsection{Private Key Encryption Scheme}
+\textbf{Let the following defintions be true:}
+\begin{itemize}
+    \item \defn \(m\): message space. \(m \in \mathbb{M}\)
+    \item \defn \(k\): key space. \(k \in \mathbb{K}\)
+    \item \defn \(c\): cipher. \(c \in \mathbb{C}\)
+    \item \defn \(\Gen\): Our key generation procedure (i.e. how we pick \(k \in \mathbb{K}\)) (assume uniformly at random)
+    \item \defn \(\Enc\): Our encryption procedure. \(\Enc_k(m) \mapsto c\)
+    \item \defn \(\Dec\): decryption procedure. \(\Dec_k(c) \mapsto \{m, \perp\}\)
+    \begin{itemize}
+        \item Note that \(\perp\) means `null'.
+    \end{itemize}
+    \item In this class, we display the probability of \(a\) given \(b\) as \(P[b : a]\).
+    \item \defn A procedure is `valid' if \(\forall m \in \mathbb{M}, \, P[k \leftarrow \Gen; c \leftarrow \Enc_k(m) : \Dec_k(c) = m] = P_{k,c}[\Dec_k(c) = m] = 1\)
+\end{itemize}
+
+\noindent \textbf{Ex. of a valid private key encryption scheme:}
+\begin{itemize}
+    \item Let \(m\) be 5-digit strings. \(\Gen\) pick \(k\) at random.
+    \item Hence, \(P[\text{each key being selected}] = 1/10^5 = 10^{-5}\).
+    \item \(\Enc_k(m) : \text{Return \(m\) concatenated with \(k\) (i.e. `\(m||k\)')}\)
+    \item For example,
+    \[
+    \Enc_{10357}(BRIAN) = BRIAN10357
+    \]
+    \item Obviously, this is NOT very secure, so we should use a more secure scheme.
+\end{itemize}
+
+\noindent \textbf{Ex. Caesar Shift:}
+\begin{itemize}
+    \item \(\mathbb{M}\): finite strings of letters
+    \item \(\mathbb{K}\): \(\{0, 1, \ldots, 25\}\)
+    \item \(\Enc_k(m)\): Shift every letter in string forward by \(\mathbb{K}\).
+    \item \(\Dec_k(c)\): Shift every letter in string backward by \(\mathbb{K}\).
+    \item For example,
+    \[
+    \Enc_{k=3}(PIZZA) = SLCCD
+    \]
+    \item Obviously, this is NOT very secure, so we should use a more secure scheme.
+\end{itemize}
+
+\noindent \textbf{Ex. Substitution Cipher:}
+\begin{itemize}
+    \item \(\mathbb{M}\): finite strings of letters
+    \item \(\mathbb{K}\): permutations of \(\{A, B, C, \ldots, Z\}\)
+    \item \(\Enc_k(m)\): \{A, B, C, \ldots, Z\} \(\rightarrow\) \{A, B, C, \ldots, Z\}. Change every instance of letter \(x\) to \(k(x)\).
+    \item \(\Dec_k(c)\): change every instance of letter \(y\) to \(k^{-1}(y)\).
+    \item Breakable by frequency analysis (count the number of times each letter appears in the ciphertext and compare it to the frequency of each letter in the English language).
+    \item Also vulnerable because certain letters are adjacent to other letters (ex. `Q' is often associated with `U').
+\end{itemize}
+
+\subsection{\defn Shannon Secrecy}
+\begin{itemize}
+    \item \defn Shannon Secrecy: Given \(\mathbb{M}\), \(\mathbb{K}\), \(\Gen\), \(\Enc\), \(\Dec\), for any prior distribution, \(D\) on \(\mathbb{M}\),
+    \[
+        P_{k,m}[m = m_0 | \Enc_k(m) = c] = P_m[m=m_0]
+    \]
+\end{itemize}
+
+\end{document} 
