@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% --- Load hyperref late, then bookmark AFTER hyperref ---
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+\newcommand{\ex}{\underline{\textbf{Ex.}} }
+\newcommand{\claim}{\underline{\textbf{Claim:}} }
+
+\newcommand{\Gen}{\textsf{Gen}}
+\newcommand{\Enc}{\textsf{Enc}}
+\newcommand{\Dec}{\textsf{Dec}}
+
+% Title info
+\title{MATH 4350 Notes - Number Theory and Cryptography}
+\author{Michael Lee}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Syllabus / How to Class Works}
+\begin{itemize}
+    \item See course website: \href{https://www.math.wustl.edu/~matkerr/4350/}{https://www.math.wustl.edu/~matkerr/4350/}
+\end{itemize}
+
+\section{Introduction}
+\begin{itemize}
+    \item \textbf{GOAL:} How do we disguise messages s.t. only the sender and receiver know what the message is even when the encryption strategy is known?
+\end{itemize}
+\subsection{Greatest Common Divisors}
+\begin{itemize}
+    \item Let \(\mathbb{N} = \{1, 2, 3, \dots\}\) be the set of natural numbers.
+    \item Let \(\mathbb{Z} = \{0, \pm 1, \pm 2, \dots\}\) be the set of integers.
+    \item \defn Greatest Common Divisor (GCD): \((a,b) :=\) largest element of \(S(a,b) := \{d \in \mathbb{N} | d \mid a, b\}\)
+    \item Properties of the GCD (true, but not proved in this class):
+    \begin{itemize}
+        \item \(a|b \wedge b|c \Rightarrow a|c\)
+        \item \(a|b \wedge b|a = a = \pm b\)
+        \item if \(a|b\) and \(a|c\) and \(x, y \in \mathbb{Z}\), then \(a|(bx + cy)\)
+    \end{itemize}
+    \item Recall that induction exists lmao
+    \item \ex Find the GCD of \((a,b) = (162, 72)\)
+    \begin{itemize}
+        \item Use GCD props:
+        \item \((0, a) = a = (a,a)\)
+        \item \((a, b) = (b,a) = (a, -b) \)
+        \item \((a, b-ma) = (a, b) \) for some \(m \in \mathbb{Z}\)
+        \item Recall long division: \(A = \{a-bk | k \in \mathbb{Z}\, a-bk \geq 0\} \subseteq \mathbb{N} \cup \{0\}\) has least element \(r\) if \(r \geq b\), then \(r-b \geq 0 \Rightarrow \) \(r \in A\). Thus \(a = bq + r\) for some unique \(q, r \in \mathbb{Z}\) and \(0 \leq r < b\).
+        \item Going back to the example,
+        \[
+        162 = 72 \cdot 2 + 18 \Rightarrow (162, 72) = (18, 72) = (72, 18)
+        \]
+        \[
+        72 = 18 \cdot 4 + 0 \Rightarrow (72, 18) = (18, 0) = 18
+        \]
+        Thus, \((162, 72) = 18\). Let's generalize this:
+    \end{itemize}
+    \item \defn Euclidean Algorithm:
+    \begin{itemize}
+        \item \(a = bq_1 + r_1, \, 0 \leq r_1 < b\)
+        \item \(b = r_1q_2 + r_2, \, 0 \leq r_2 < r_1\)
+        \item \(r_1 = r_2q_3 + r_3, \, 0 \leq r_3 < r_2\)
+        \item \(\vdots\)
+        \item \(r_{n-1} = r_nq_{n+1} + r_{n+1}\)
+        \item Eventually, \(r_{n+1} = 0\), so \(r_{n-1} = r_nq_{n+1} + 0\)
+        \item Thus, \((a,b) = r_n\)
+        \item Eventually, we will prove this is a polynomial time algorithm.
+    \end{itemize}
+    \item \thm \(S := \{ax+by | x,y \in \mathbb{Z}, ax+by > 0\} = (a,b) = g\) (i.e. the GCD)
+    \begin{proof}
+        First, we must show \(S \subseteq g\). We know that \(a = g \alpha\) and \(b = g \beta\) since \(g|a,b\) by defn for some \(x,y \in \mathbb{Z}\). \\
+
+        Thus, any \(ax+by = g(\alpha x + \beta y)\) is divisible by \(g\). \\
+
+        Next, we must prove that \(g \subseteq S\). We know that \(g = (a,b) = r_n = \) the last non-zero remainder in the Euclidean Algorithm. We will show all non-zero \(r_j\)'s are in \(S\) via induction:
+
+        \textbf{Base Case:} \(r_1 = 1 \cdot a + (-q_1) \cdot b \in S\)
+
+        \textbf{Inductive Hypothesis:} Assume \(r_j = a \cdot x_j + b \cdot y_j \in S \quad \forall j \in [1, \cdots, k-1]\).
+
+        \textbf{Inductive Step:} We know:
+        \[
+        r_{k-2} = r_{k-1}q_k + r_k \Rightarrow r_k = r_{k-2} + (-q_k) r_{k-1}
+        \]
+        \[
+            = a \cdot x_{k-2} + b \cdot y_{k-2} + (-q_k) (a \cdot x_{k-1} + b \cdot y_{k-1}) = a (x_{k-2} - q_k x_{k-1}) + b (y_{k-2} - q_k y_{k-1}) \in S
+        \]
+    \end{proof}
+\end{itemize}
+
+\subsection{Fermat's Little Theorem}
+\begin{itemize}
+    \item \thm \(a^p \equiv a \mod p\) for all \(a \in \mathbb{Z}\) and prime \(p\)
+    \begin{proof}
+        \textbf{Claim:} 
+    \end{proof}
+\end{itemize}
+
+\end{document}
