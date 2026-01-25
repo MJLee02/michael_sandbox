@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% --- Load hyperref late, then bookmark AFTER hyperref ---
+\usepackage[hidelinks]{hyperref}   % load near the end
+\usepackage{bookmark}              % must come after hyperref
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+\newcommand{\Gen}{\textsf{Gen}}
+\newcommand{\Enc}{\textsf{Enc}}
+\newcommand{\Dec}{\textsf{Dec}}
+
+% Title info
+\title{MET CS 599 HW1 - Biometrics}
+\author{Michael Lee}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1: Microsoft Azure AI Services and Biometrics}
+
+Azure offers several groups of AI services that can be mapped to biometric modalities discussed in class, especially face and voice. Azure AI Face can be used directly for the face biometric modality because it provides capabilities for detecting a face in an image and performing face recognition workflows that align with biometric verification (one-to-one) and identification (one-to-many). In a biometric system, this type of service supports the core step of comparing a newly captured facial sample against an enrolled reference template or a database of templates, which is precisely how face-based biometric authentication and identification are typically implemented. \\
+
+Azure Vision (often presented through image analysis capabilities such as general image understanding and OCR) can support face biometrics as well as the operational steps around enrollment. On the biometric side, vision capabilities help locate faces in images or frames so that downstream biometric processing can be applied to the correct region. On the operational side, OCR and document-related vision features can assist with enrollment and identity proofing workflows by extracting text from identity documents or forms that accompany biometric capture, which improves collectability and data quality even when the biometric modality itself is not text-based. \\
+
+Azure AI Speech can be used for the voice biometric modality because it includes capabilities related to speaker recognition. Voice biometrics rely on characteristics of a person's speech signal, and a cloud speech service can support that modality by enabling systems to distinguish speakers or verify that the speaker matches an enrolled identity. In addition, speech-to-text can support voice-based authentication flows by confirming that a user spoke a prompted phrase correctly, which improves reliability and reduces errors that come from mismatched prompts or noisy captures. \\
+
+Azure Document Intelligence is not a biometric matcher by itself, but it can strongly support biometric systems that involve documents and signatures. In many real deployments, biometric enrollment or verification is coupled with a form, consent document, or identity credential, and Document Intelligence helps extract structured data from those documents for storage, auditing, and validation. This is particularly relevant for signature as a behavioral biometric, because signature capture and signature presence on a document can be detected and organized so that the biometric process is supported by consistent document handling. \\
+
+Azure Content Understanding can support biometrics when biometric capture is embedded in broader multimodal workflows that include images and video. When a system accepts mixed inputs such as a selfie video, a still photo, and an associated document, a multimodal service can help interpret, validate, and route those inputs so that the biometric components operate on high-quality data. In that sense, the service supports collectability and performance by improving input quality control and by structuring the data pipeline around biometric capture. \\
+
+Azure Content Safety is not a biometric modality, but it is useful in biometric systems because these systems often ingest user-submitted images, videos, and text that must be handled safely and consistently. Content safety checks can reduce abuse in enrollment pipelines, help protect reviewers in human-in-the-loop processes, and enforce platform policies when biometric-related content is uploaded. This is best understood as a supporting security and governance layer that strengthens the overall biometric system. \\
+
+Azure Translator and Azure AI Language are not biometric matchers, but they can enable biometric deployments at scale across languages and regions. Translator supports accurate multilingual instructions and consent materials so that users can reliably complete biometric capture steps, which improves collectability and reduces failure to enroll due to misunderstanding. Language capabilities can also assist with processing consent text, enrollment metadata, and logs, which supports compliance and operational integrity in deployments that handle biometric data. \\
+
+\section*{Problem 2: Amazon AWS Services Potentially Useful for Biometrics}
+
+Amazon Rekognition is a managed computer vision service that analyzes images and video and provides APIs for tasks such as face detection and face comparison. It is designed to let applications integrate visual understanding without having to build and host custom computer vision models from scratch. \\
+
+In biometrics, Rekognition can be used directly for the face modality by enabling face-based verification and identification workflows. A typical biometric pipeline can compare a presented face image to a stored enrollment image or search a collection for the closest match, which aligns naturally with authentication and identification tasks discussed in class. This service therefore functions as a practical face-biometric component or as a backbone for face matching within a broader identity system. \\
+
+Amazon Rekognition Face Liveness is a capability focused on determining whether the face presented to the camera comes from a live person rather than a spoof such as a photo, replayed video, or mask-like artifact. The service returns assessments that help detect presentation attacks, and it is meant to be used alongside face recognition steps. \\
+
+In biometrics, Face Liveness supports the face modality by adding a liveness check that improves resistance to circumvention. Since biometric systems can be attacked through presentation spoofing, liveness detection is an important security element that increases trust in the verification decision and reduces the chance that a non-live artifact is accepted as a valid biometric sample. \\
+
+Amazon Transcribe is a managed automatic speech recognition service that converts streaming or recorded audio into text. It is used to transform spoken content into searchable and analyzable transcripts while handling scaling and infrastructure concerns. \\
+
+In biometrics, Transcribe can support voice-based systems by enabling downstream checks that depend on the content of a spoken prompt, such as verifying that the user spoke a required passphrase during authentication. It also helps operational monitoring and auditing of voice sessions by creating text records that can be inspected for compliance or quality, even if the actual speaker-matching model is implemented elsewhere. \\
+
+Amazon Textract is a document understanding service that extracts printed text, handwriting, and structured content such as forms and tables from scanned documents. It is designed to go beyond basic OCR by retaining document structure that is useful for automation and recordkeeping. \\
+
+In biometrics, Textract supports enrollment and verification workflows that involve identity documents, consent forms, or signatures. In a system that pairs biometric capture with document evidence, Textract helps structure the associated documentation for validation and audit trails. It can also support signature-related workflows by extracting and organizing the parts of documents that contain signature blocks or signer information. \\
+
+Amazon Kinesis Video Streams is an ingestion and transport service for securely streaming video from cameras and devices into AWS. It supports buffering, storage integration, encryption, and scalable processing pipelines so that applications can analyze video reliably. \\
+
+In biometrics, Kinesis Video Streams supports video-based capture for modalities such as face and gait by providing a robust way to bring camera data into a recognition or liveness system. When biometric decisions depend on frames captured from live video, an ingestion layer that can securely handle streaming and storage is essential for consistent performance and for maintaining integrity of biometric evidence. \\
+
+Amazon Comprehend is a managed natural language processing service that analyzes text to extract insights such as entities, topics, sentiment, and classifications. It is typically used to process large volumes of unstructured text in a standardized way. \\
+
+In biometrics, Comprehend can support the operational layer of biometric systems by analyzing consent text, incident reports, support tickets, and audit notes that accompany biometric enrollment and authentication. This kind of text understanding can assist compliance and governance by automatically identifying sensitive content, categorizing issues, or prioritizing reviews when anomalies occur during biometric operations. \\
+
+Amazon Translate is a neural machine translation service that provides high-quality translation through APIs. It is built to support multilingual products that need consistent translation at scale. \\
+
+In biometrics, Translate supports global biometric deployments by ensuring that enrollment prompts, liveness instructions, and consent forms are presented accurately in the user's language. Because user understanding affects capture quality and completion rates, translation directly improves collectability and reduces usability-driven error in biometric capture workflows. \\
+
+Amazon SageMaker is a managed platform for building, training, and deploying machine learning models. It provides tooling for data preparation, training jobs, hosting endpoints, and MLOps workflows so organizations can iterate on models efficiently. \\
+
+In biometrics, SageMaker can be used to develop custom biometric matchers for modalities that are not fully provided as managed recognition APIs, such as gait recognition, keystroke dynamics, or domain-specific fingerprint processing. It also supports experimentation with multimodal fusion, where features from multiple biometric sources are combined to improve accuracy and robustness under real-world conditions. \\
+
+\section*{Problem 3: OpenAI APIs and Services Potentially Useful for Biometrics}
+
+OpenAI's image understanding capabilities can support biometric systems even when the biometric matcher itself is implemented using a separate specialized engine. When biometric workflows involve selfie capture, ID capture, or video frames, image understanding can be used to assess whether the input is usable, to flag obvious capture issues such as poor lighting or occlusion, and to assist human review by producing structured interpretations of associated imagery. This supports the biometric system by improving data quality and reducing failure to enroll or failure to acquire caused by low-quality inputs. \\
+
+OpenAI's audio transcription capabilities can support voice-based biometric workflows by converting user speech into text for prompt compliance and auditing. In voice authentication systems that require the user to speak a phrase, transcription enables the system to check that the correct phrase was spoken, which helps ensure that the voice sample is valid for the intended authentication step. Transcription can also support operational monitoring by creating searchable records of authentication sessions that can be inspected for quality and compliance without storing more biometric signal than necessary. \\
+
+OpenAI's text-to-speech capabilities can support biometric capture by delivering standardized spoken prompts during enrollment and authentication. In interactive biometric experiences, consistent prompts help reduce user confusion and make it easier to guide users through capture steps, such as reading a phrase for voice workflows or following instructions during a selfie-based flow. This improves collectability and user acceptability by providing a clear and consistent interface. \\
+
+OpenAI's realtime multimodal APIs can support biometric systems that require low-latency feedback to the user during capture. Many biometric failures stem from capture conditions that could be corrected immediately, such as asking a user to reposition, adjust lighting, or repeat a phrase. A realtime interaction layer can provide immediate guidance that improves capture quality, reduces retries, and makes biometric enrollment or verification more robust under varied real-world conditions. \\
+
+OpenAI's embeddings can support behavioral and metadata-driven components around biometrics by turning text and other structured descriptors into vectors for similarity and clustering. While embeddings are not a face or voice template in the classical biometric sense, they can support related identity risk and quality workflows, such as grouping similar enrollment narratives, clustering support interactions linked to biometric events, or identifying repeated patterns associated with fraud attempts in accompanying text fields. In this way, embeddings act as a supporting analytic tool that strengthens the overall biometric system's monitoring and decision support. \\
+
+OpenAI's moderation services can support biometric pipelines by filtering or flagging harmful content in user-submitted text and images that are processed during enrollment or verification. Biometric systems often involve user uploads and human review queues, and moderation helps reduce risk by identifying abusive or policy-violating material early in the pipeline. This improves system safety and governance, which are important practical considerations in real deployments that handle sensitive identity and biometric data. \\
+
+\end{document}

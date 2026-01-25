@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+
+% Common packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Page setup
+\geometry{margin=0.5in}
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt}
+
+% --- Load hyperref late, then bookmark AFTER hyperref ---
+\usepackage[hidelinks]{hyperref}   % load near the end
+\usepackage{bookmark}              % must come after hyperref
+
+% Short labels
+\newcommand{\thm}{\underline{\textbf{Thm.}} }
+\newcommand{\defn}{\underline{\textbf{Def.}} }
+\newcommand{\prop}{\underline{\textbf{Prop.}} }
+\newcommand{\Gen}{\textsf{Gen}}
+\newcommand{\Enc}{\textsf{Enc}}
+\newcommand{\Dec}{\textsf{Dec}}
+
+% Title info
+\title{CAS CS 565 Notes — Complexity Theory}
+\author{Michael Lee}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Syllabus / How the Class Works}
+\begin{itemize}
+    \item Homeworks, midterm, and final. The midterm is harder than the final.
+    \item Pure theory class. No programming.
+    \item AI is allowed if you acknowledge it.
+    \item Exams are closed book. Handwritten cheat sheets are allowed.
+    \item You can always go back to the professor or TF for regrading. Unless you are right, there is a good chance you lose points.
+    \item If you don't know the answer on a midterm, don't guess. Just say you don't know. You will get 0 points if you guess.
+    \item No makeups for midterms or finals.
+    \item This class will cover deterministic and nondeterministic models.
+    \item This is a grad class.
+    \item Midterms and finals will be on the harder material. Don't expect basics.
+\end{itemize}
+
+\section{Deterministic Models, Polynomial Time, and Church's Thesis}
+\begin{itemize}
+    \item What is computation? What is computable? What is uncomputable?
+    \item Simpler models tend to be better for proofs than complex models, because they are equivalent (in computational power) and easier to reason about.
+    \item View computations as a directed graph \(G(V,E)\), where \(V\) are events and \(E\) are transitions between events.
+    \item If an edge \(e \in E\) points from event \(u\) to event \(v\), then \(u\) is the parent of \(v\), and \(v\) is the child of \(u\).
+    \item Each event has a time parameter and a space parameter.
+    \item We will start with rigid models, i.e., models that do not change (are not flexible).
+    \item Defining efficiency:
+    \begin{itemize}
+        \item Time complexity: the number of steps it takes to compute the output.
+        \item Space complexity: the amount of memory it takes to compute the output.
+    \end{itemize}
+    \item We will use the following notation: % (fill in as you define it)
+    \item There are active and passive computations.
+    \item Sequential computation: when one event is computed at a time.
+    \item Parallel computation: when multiple sequential computations are run in parallel.
+    \item Recall time complexity notation, \(\sup\), and \(\inf\):
+    \begin{itemize}
+        \item Suppose there are two functions, \(f:\mathbb{N} \rightarrow \mathbb{R}, n \mapsto f(n)\) and \(g:\mathbb{N} \rightarrow \mathbb{R}, n \mapsto g(n)\).
+        \item \(f = O(g) \iff \exists c > 0\) s.t. \(f(n) < c \cdot g(n)\) \(\forall (n \geq n_0) \iff \sup(\frac{f(n)}{g(n)}) < \infty\)
+        \item \(f = \Omega(g) \iff \exists c > 0\) s.t. \(f(n) > c \cdot g(n)\) \(\forall (n \geq n_0) \iff \inf(\frac{f(n)}{g(n)}) > 0\)
+        \item \(f = \Theta(g) \iff f = O(g) \text{ and } f = \Omega(g) \iff \exists c_1, c_2 > 0\) s.t. \(c_1 \cdot g(n) < f(n) < c_2 \cdot g(n)\) \(\forall (n \geq n_0) \iff \sup(\frac{f(n)}{g(n)}) < \infty \text{ and } \inf(\frac{f(n)}{g(n)}) > 0\)
+        \item \(f = o(g) \iff \lim_{n \to \infty} \frac{f(n)}{g(n)} = 0\)
+        \item Basically, after some point, \(n_0\),
+        \begin{itemize}
+            \item \(f = O(g)\) means \(f(n) < c \cdot g(n)\)
+            \item \(f = \Omega(g)\) means \(f(n) > c \cdot g(n)\)
+            \item \(f = \Theta(g)\) means \(c_1 \cdot g(n) < f(n) < c_2 \cdot g(n)\)
+            \item \(f = o(g)\) means \(\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0\)
+        \end{itemize}
+    \end{itemize}
+    \item Some different complexities:
+    \begin{itemize}
+        \item \(O(1)\): Constant time.
+        \item \(O(\log n) = (\log n)^{O(1)}\): Logarithmic time.
+        \item \(O(n) = n^{O(1)}\): Linear time.
+        \item \(O(n \log n) = (n \log n)^{O(1)}\): Linearithmic time.
+        \item \(O(n^2) = n^{O(2)}\): Quadratic time.
+        \item \(O(n^3) = n^{O(3)}\): Cubic time.
+        \item \(O(2^n) = 2^{O(n)} = (2^n)^{O(1)}\): Exponential time.
+        \item \(O(n!) = n^{O(n)}\): Factorial time.
+        \begin{itemize}
+            \item Note that:
+            \[
+            n! = \left( \frac{n}{e} \right)^n \sqrt{2 \pi n + t_n}
+            \]
+        \end{itemize}
+    \end{itemize}
+    \item Typically, \(O(1), O(\log n), O(n), O(n \log n)\) are the `best' time complexities.
+\end{itemize}
+
+\end{document}
